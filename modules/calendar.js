@@ -15,7 +15,7 @@ module.exports = (num = 0) => {
     }
     const monthCalendar = calendar.monthDays(year, monthNumber);
 
-    const returnObj = {monthCalendar, monthText, monthNumber}
+    const returnObj = {monthCalendar, monthText, monthNumber, year}
     
     return returnObj;
 }

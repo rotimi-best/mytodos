@@ -16,7 +16,7 @@ class TodoController extends TelegramBaseController {
      * @param {Scope} $
      */
     startDatePickerHandler($) {
-        const {monthCalendar, monthText, monthNumber} = makeCalendar();
+        const {monthCalendar, monthText, monthNumber, year} = makeCalendar();
         let genMenus = [
             { text: monthText, callback: (callbackQuery) => this.callbackRes (callbackQuery) },
             { text:'Su', callback: (callbackQuery) => this.callbackRes(callbackQuery) },
@@ -37,7 +37,7 @@ class TodoController extends TelegramBaseController {
                     menu = { 
                         text: `${monthCalendar[i][j]}`, 
                         callback: (callbackQuery) => { 
-                            this.callbackRes(callbackQuery, {day: monthCalendar[i][j], month: monthNumber});
+                            this.callbackRes(callbackQuery, {day: monthCalendar[i][j], month: monthNumber, year});
                         } }
                 }
                 genMenus.push(menu);
@@ -53,8 +53,8 @@ class TodoController extends TelegramBaseController {
 
     callbackRes (callbackQuery, res) {
         if (!res) return bot.api.answerCallbackQuery(callbackQuery.id, { text: 'Not a Valid option, Please pick a day', show_alert: true});
-        const { day, month } = res;
-        console.log(day, month)
+        const { day, month, year } = res;
+        console.log(day, month, year)
     }
 
     get routes() {
