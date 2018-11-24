@@ -1,21 +1,30 @@
-const Telegram = require("telegram-node-bot");
-const TelegramBaseController = Telegram.TelegramBaseController
-const TextCommand = Telegram.TextCommand;
-const makeCalendar = require('./modules/calendar');
-// const bot = require('./helpers/botConnection');
+const {TelegramBaseController} = require("telegram-node-bot");
+const DatePicker = require('../controllers/DatePicker');
+const date = require('../modules/date');
 
 class TodoController extends TelegramBaseController {
 
     /**
      * @param {Scope} $
      */
-    datePickerHandler($) {
-        
+    async newTodoHandler($) {
+        const start = new DatePicker('Start','Task begins from');
+        const enddate = new DatePicker('Finish','Task deadline is');
+        let dateChoosen = await start.datePickerHandler($);
+        $.sendMessage(date(), dateChoosen);
+    }
+
+     /**
+     * @param {Scope} $
+     */
+    allTodosHandler($) {
+        $.sendMessage('Showing all todo');
     }
 
     get routes() {
         return {
-            'datePickerCommand': 'datePickerHandler'
+            'newTodoCommand': 'newTodoHandler',
+            allTodosCommand: 'allTodosHandler'
         }
     }
 }

@@ -2,6 +2,7 @@ const { TelegramBaseController } = require("telegram-node-bot");
 const makeCalendar = require('../modules/calendar');
 const Bot = require('../helpers/botConnection');
 const bot = Bot.get();
+let dateChoosen = '';
 
 class DatePicker extends TelegramBaseController {
     constructor (type, logMessage) {
@@ -13,14 +14,17 @@ class DatePicker extends TelegramBaseController {
      * @param {Scope} $
      */
     datePickerHandler($) {
-        let {monthNumber} = makeCalendar();
-        let genMenus = this.generateMenu($, monthNumber);
-        
-        $.runInlineMenu({
-            layout: [1,7,7,7,7,7,7,7,3],
-            method: 'sendMessage',
-            params: [`Choose a ${this.type} Date`],
-            menu: genMenus
+        return new Promise((resolve, reject) => {
+            let {monthNumber} = makeCalendar();
+            let genMenus = this.generateMenu($, monthNumber);
+            
+            $.runInlineMenu({
+                layout: [1,7,7,7,7,7,7,7,3],
+                method: 'sendMessage',
+                params: [`Choose a ${this.type} Date`],
+                menu: genMenus
+            });
+            resolve(dateChoosen);
         });
     }
     
@@ -47,7 +51,7 @@ class DatePicker extends TelegramBaseController {
                     menu = { 
                         text: `${monthCalendar[i][j]}`, 
                         callback: (callbackQuery) => { 
-                            this.callbackRes(callbackQuery, {$, day: monthCalendar[i][j], month: monthNumber, year});
+                            this.callbackRes(callbackQuery, {day: monthCalendar[i][j], month: monthNumber, year});
                         } }
                     }
                     genMenus.push(menu);
@@ -58,11 +62,12 @@ class DatePicker extends TelegramBaseController {
 
     callbackRes (callbackQuery, res) {
         if (!res) return bot.api.answerCallbackQuery(callbackQuery.id, { text: 'Not a Valid option, Please pick a day', show_alert: true});
-        const { $, day, month, year } = res;
+        const { day, month, year } = res;
         const jsDate = new Date(year, month, day);
         const chooseDate = jsDate.toString().replace(/\s00:00:00?.*/g, '');
-        bot.api.answerCallbackQuery(callbackQuery.id, { text: 'Success!'});
-        return $.sendMessage(`${this.logMessage} ${chooseDate}`);
+        dateChoosen = `${year}-${month}-${day}`;
+        console.log(dateChoosen);
+        return bot.api.answerCallbackQuery(callbackQuery.id, { text: `Success! ${this.logMessage} ${chooseDate}`});
     }
 
     get routes() {
