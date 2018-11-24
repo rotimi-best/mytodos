@@ -14,7 +14,7 @@ const addTodo = params => {
 const findTodo = params => {
   return new Promise(async (resolve, reject) => {
     try {
-      const found = await todosDb.find(params);
+      const found = await todosDb.find(params).sort({ taskNumber: 1 });
       resolve(found);
     } catch (error) {
       reject(error);

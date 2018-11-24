@@ -29,11 +29,14 @@ class TodoController extends TelegramBaseController {
     $.runForm(form, async result => {
       const { task } = result;
       const done = false;
-      let taskNumber = await findTodo({ telegramId, done });
-      if (!taskNumber.length) {
-        taskNumber = 0;
-      } else {
-        taskNumber += 1;
+      const allTodos = await findTodo({ telegramId, done });
+      //   console.log(allTodos);
+      let taskNumber = 1;
+      if (allTodos.length) {
+        let max = allTodos.reduce((prev, current) =>
+          prev.taskNumber > current.taskNumber ? prev : current
+        );
+        taskNumber = max.taskNumber + 1;
       }
       const todo = {
         task,
@@ -43,7 +46,7 @@ class TodoController extends TelegramBaseController {
         taskNumber
       };
       console.log(todo);
-      // await addTodo(todo);
+      await addTodo(todo);
       $.sendMessage(
         "Your task has been added, use the /alltodos to see all undone task"
       );
@@ -53,8 +56,26 @@ class TodoController extends TelegramBaseController {
   /**
    * @param {Scope} $
    */
-  allTodosHandler($) {
-    $.sendMessage("Showing all todo");
+  async allTodosHandler($) {
+    const telegramId = $.message.chat.id;
+    const done = false;
+    const allTodos = await findTodo({ telegramId, done });
+    const buttons = [];
+    let todos = `*Here are all your uncompleted tasks*\n\n`;
+    for (let i = 0; i < allTodos.length; i++) {
+      const { task, taskNumber } = allTodos[i];
+      todos += `${taskNumber}) ${task}\n\n`;
+      buttons.push({
+        text: `${taskNumber} ✅`,
+        callback: (cb, msg) => console.log(msg)
+      });
+    }
+    $.runInlineMenu({
+      layout: 4, //some layouting here
+      method: "sendMessage", //here you must pass the method name
+      params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
+      menu: buttons
+    });
   }
 
   get routes() {
