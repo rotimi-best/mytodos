@@ -66,8 +66,8 @@ class TodoController extends TelegramBaseController {
       const { task, date, taskNumber } = allTodos[i];
       todos += `🔵 ${taskNumber}\n${task} - (${date})\n\n`;
       buttons.push({
-        text: `${taskNumber} ✅`
-        // callback: (cb, msg) => console.log(msg)
+        text: `${taskNumber} ✅`,
+        callback: (cb, msg) => console.log(msg)
       });
     }
     $.runInlineMenu({
