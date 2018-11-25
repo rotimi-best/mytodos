@@ -1,7 +1,9 @@
 const { TelegramBaseController } = require("telegram-node-bot");
 const DatePicker = require("../controllers/DatePicker");
 const date = require("../modules/date");
-const { findTodo, addTodo } = require("../Db/todos");
+const { findTodo, addTodo, updateTodo } = require("../Db/todos");
+const Bot = require('../helpers/botConnection');
+const bot = Bot.get();
 
 class TodoController extends TelegramBaseController {
   /**
@@ -11,11 +13,12 @@ class TodoController extends TelegramBaseController {
     // const start = new DatePicker('Start','Task begins from');
     // const enddate = new DatePicker('Finish','Task deadline is');
     // let dateChoosen = await start.datePickerHandler($);
+    const scope = $;
     const telegramId = $.message.chat.id;
     const form = {
       task: {
-        q: "What do you need done?",
-        error: "Sorry, thats not a task, try again",
+        q: "Send me your task",
+        error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
             callback(true, message.text); //you must pass the result also
@@ -38,6 +41,7 @@ class TodoController extends TelegramBaseController {
         );
         taskNumber = max.taskNumber + 1;
       }
+      
       const todo = {
         task,
         date: date(),
@@ -45,11 +49,42 @@ class TodoController extends TelegramBaseController {
         done,
         taskNumber
       };
-      console.log(todo);
+      
       await addTodo(todo);
-      $.sendMessage(
-        "Your task has been added, use the /alltodos to see all undone task"
-      );
+      const cbData = JSON.stringify(scope);
+      // $.sendMessage(`Great, I've added it. What do you want to do next?`, {
+      //     reply_markup: JSON.stringify({
+      //       inline_keyboard: [[{text: 'View all todos', callback_data: '222'}, 
+      //                          {text: 'Add a new todo', callback_data: '111'}]]
+      //     })
+      //   });
+      
+      $.runInlineMenu({
+        layout: [1,1],
+        method: 'sendMessage', 
+        params: [`Great, I've added it. What do you want to do next?`], 
+        menu: [
+            {
+                text: `View all todos`,
+                callback:  async (query, message) => { 
+                    bot.api.answerCallbackQuery(query.id, {
+                      text: `Okay! Here they are.`
+                    });
+                  
+                    await this.allTodosHandler(scope);
+                }
+            },{
+                text: `Add a new todo`,
+                callback: async (query, message) => { 
+                    bot.api.answerCallbackQuery(query.id, {
+                      text: `Okay! Lets go.`
+                    });
+                  
+                    await this.newTodoHandler(scope);
+                }
+            }
+        ]
+      });
     });
   }
 
@@ -57,21 +92,62 @@ class TodoController extends TelegramBaseController {
    * @param {Scope} $
    */
   async allTodosHandler($) {
+    // const done = false;
+    const scope = $
     const telegramId = $.message.chat.id;
-    const done = false;
-    const allTodos = await findTodo({ telegramId, done });
+    const allTodos = await findTodo({ telegramId, done: false });
+    
+    if (!allTodos.length) {
+      $.sendMessage('You currently have no task.\n\nDo you want to create a new one?', {
+          reply_markup: JSON.stringify({
+            keyboard: [[{text: 'Yes'}],[{text: 'No'}]],
+            one_time_keyboard: true
+          })
+        });
+
+      $.waitForRequest.then(async $ => {
+        if ($.message.text === `Yes`) {
+          $.sendMessage(
+            `Okay`,
+            {
+              reply_markup: JSON.stringify({
+                remove_keyboard: true
+              })
+            }
+          );
+          await this.newTodoHandler($);
+        } else if ($.message.text === `No`) {
+            $.sendMessage(`Okay`,
+              {
+                reply_markup: JSON.stringify({
+                  remove_keyboard: true
+                })
+              }
+            );
+        }
+      });
+      return;
+    }
     const buttons = [];
-    let todos = `*Here are all your uncompleted tasks*\n\n`;
-    for (let i = 0; i < allTodos.length; i++) {
-      const { task, date, taskNumber } = allTodos[i];
-      todos += `🔵 ${taskNumber}\n${task} - (${date})\n\n`;
+    
+    let todos = `📝 *All Todos*\n\n`;
+    
+    for (let i = 1; i <= allTodos.length; i++) {
+      const { task, date, taskNumber } = allTodos[i-1];
+      
+      todos += `📌 ${i}\n${task} - (${date})\n\n`;
       buttons.push({
-        text: `${taskNumber} ✅`,
-        callback: (cb, msg, taskNumber) => {
-          console.log(taskNumber);
+        text: `${i} ✅`,
+        callback: async (query, msg) => {
+          await updateTodo({telegramId, taskNumber}, { done: true });
+          bot.api.answerCallbackQuery(query.id, {
+            text: `You've completed task ${taskNumber}, Congratulations! 👏`
+          });
+          await this.allTodosHandler(scope)
         }
       });
     }
+    
     $.runInlineMenu({
       layout: 4, //some layouting here
       method: "sendMessage", //here you must pass the method name
