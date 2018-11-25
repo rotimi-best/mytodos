@@ -53,6 +53,7 @@ class TodoController extends TelegramBaseController {
           done,
           taskNumber
         };
+        taskNumber += 1;
         await addTodo(todo);
       }
 
@@ -129,13 +130,14 @@ class TodoController extends TelegramBaseController {
     let todos = `📝 *All Todos*\n\n`;
 
     for (let i = 1; i <= allTodos.length; i++) {
-      const { task, date, taskNumber } = allTodos[i - 1];
-
-      todos += `📌 ${i}\n${task} - (${date})\n\n`;
+      const { _id, task, date, taskNumber } = allTodos[i - 1];
+      console.log(taskNumber);
+      const editCommand = `/edit`+`${taskNumber}`;
+      todos += `📌 ${i}${task}\n${editCommand}\n\n`;
       buttons.push({
         text: `${i} ✅`,
         callback: async (query, msg) => {
-          await updateTodo({ telegramId, taskNumber }, { done: true });
+          await updateTodo({ _id: _id }, { done: true });
 
           bot.api.answerCallbackQuery(query.id, {
             text: `You've completed task ${taskNumber}, Congratulations! 👏`
