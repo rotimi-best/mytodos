@@ -132,8 +132,8 @@ class TodoController extends TelegramBaseController {
     for (let i = 1; i <= allTodos.length; i++) {
       const { _id, task, date, taskNumber } = allTodos[i - 1];
       console.log(taskNumber);
-      const editCommand = `/edit`+`${taskNumber}`;
-      todos += `📌 ${i}${task}\n${editCommand}\n\n`;
+      const editCommand = `/edit` + `${taskNumber}`;
+      todos += `📌 ${i}\n${task}\n${editCommand}\n\n`;
       buttons.push({
         text: `${i} ✅`,
         callback: async (query, msg) => {
@@ -217,10 +217,20 @@ class TodoController extends TelegramBaseController {
     });
   }
 
+  /**
+   * Edit a todo
+   *
+   * @param {Scope} $
+   */
+  async editTodosHandler($) {
+    console.log($);
+  }
+
   get routes() {
     return {
       newTodoCommand: "newTodoHandler",
       allTodosCommand: "allTodosHandler",
+      editTodosCommand: "editTodosHandler",
       doneTodosCommand: "doneTodosHandler"
     };
   }
