@@ -7,7 +7,8 @@ const bot = require("./helpers/botConnection").get();
 const Todo = require("./controllers/Todo");
 const DatePicker = require("./controllers/DatePicker");
 const Start = require("./controllers/Start");
-const CallbackQueryController = require("../callbackQueries");
+const CallbackQueryController = require("./callbackQueries");
+
 
 bot.router.callbackQuery(new CallbackQueryController());
 

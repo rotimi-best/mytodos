@@ -161,7 +161,8 @@ class TodoController extends TelegramBaseController {
     const scope = $;
     const buttons = [];
     const telegramId = $.message.chat.id;
-    const doneTodos = await findTodo({ telegramId, done: true });
+    const doneTodos = await findTodo({ done: true });
+    console.log(doneTodos);
 
     if (!doneTodos.length) {
       $.runInlineMenu({
