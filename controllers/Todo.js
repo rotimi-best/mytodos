@@ -10,9 +10,6 @@ class TodoController extends TelegramBaseController {
    * @param {Scope} $
    */
   async newTodoHandler($) {
-    // const start = new DatePicker('Start','Task begins from');
-    // const enddate = new DatePicker('Finish','Task deadline is');
-    // let dateChoosen = await start.datePickerHandler($);
     const scope = $;
     const telegramId = $.message.chat.id;
     const form = {
@@ -57,37 +54,12 @@ class TodoController extends TelegramBaseController {
         await addTodo(todo);
       }
 
-      $.runInlineMenu({
-        layout: [1, 1],
-        method: "sendMessage",
-        params: [`Great, I've added it. What do you want to do next?`],
-        menu: [
-          {
-            text: `View all todos`,
-            callback: async query => {
-              bot.api.answerCallbackQuery(query.id, {
-                text: `Okay! Here they are.`
-              });
-
-              await this.allTodosHandler(scope);
-            }
-          },
-          {
-            text: `Add a new todo`,
-            callback: async query => {
-              bot.api.answerCallbackQuery(query.id, {
-                text: `Okay! Lets go.`
-              });
-
-              await this.newTodoHandler(scope);
-            }
-          }
-        ]
-      });
+      await this.suggestNextStepToUser($, `Great, I've added it.`);
     });
   }
 
   /**
+   * List all uncompleted todos
    * @param {Scope} $
    */
   async allTodosHandler($) {
@@ -157,6 +129,8 @@ class TodoController extends TelegramBaseController {
   }
 
   /**
+   * Return Completed todo
+   *
    * @param {Scope} $
    */
   async doneTodosHandler($) {
@@ -223,7 +197,67 @@ class TodoController extends TelegramBaseController {
    * @param {Scope} $
    */
   async editTodosHandler($) {
-    console.log($);
+    const message = $.message.text;
+    const telegramId = $.message.chat.id;
+    const taskNumber = message.match(/\/edit([0-9]+)/)[1];
+
+    const form = {
+      task: {
+        q: "Okay what do you want to change it to?",
+        error: "Sorry, thats not a valid task, try again",
+        validator: (message, callback) => {
+          if (message.text) {
+            callback(true, message.text);
+            return;
+          }
+          callback(false);
+        }
+      }
+    };
+
+    $.runForm(form, async result => {
+      const { task } = result;
+      const done = false;
+      const todo = await updateTodo({ telegramId, taskNumber, done }, { task });
+
+      let customText = "";
+      if (!todo) customText = `Sorry, edit wasn't successful`;
+      else customText = `Edited successfully!`;
+
+      await this.suggestNextStepToUser($, customText);
+
+      return;
+    });
+  }
+
+  async suggestNextStepToUser($, customText) {
+    $.runInlineMenu({
+      layout: [1, 1],
+      method: "sendMessage",
+      params: [`${customText} What do you want to do next?`],
+      menu: [
+        {
+          text: `View all todos`,
+          callback: async query => {
+            bot.api.answerCallbackQuery(query.id, {
+              text: `Okay! Here they are.`
+            });
+
+            await this.allTodosHandler($);
+          }
+        },
+        {
+          text: `Add a new todo`,
+          callback: async query => {
+            bot.api.answerCallbackQuery(query.id, {
+              text: `Okay! Lets go.`
+            });
+
+            await this.newTodoHandler($);
+          }
+        }
+      ]
+    });
   }
 
   get routes() {

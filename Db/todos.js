@@ -25,10 +25,10 @@ const findTodo = params => {
 const updateTodo = (findField, setField) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await todosDb.update(findField, {$set: setField});
+      await todosDb.update(findField, { $set: setField });
       resolve(true);
     } catch (error) {
-      reject(error);
+      reject(false);
     }
   });
 };

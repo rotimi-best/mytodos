@@ -17,4 +17,4 @@ bot.router
     new TextCommand("/endtask", "datePickerCommand"),
     new DatePicker("Finish", "Task deadline is")
   )
-  .when(new RegexpCommand(/^edit([0-9]+.)/g, "editTodosCommand"), new Todo());
+  .when(new RegexpCommand(/\/edit/, "editTodosCommand"), new Todo());
