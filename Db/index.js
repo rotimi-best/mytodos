@@ -6,5 +6,13 @@ const todosDb = Datastore.create({
   autoload: true
 });
 
+const userDb = Datastore.create({
+  filename: "data/users.db",
+  timestampData: true,
+  autoload: true
+});
 
-module.exports = todosDb;
+module.exports = {
+  todosDb,
+  userDb
+};
