@@ -164,55 +164,55 @@ class TodoController extends TelegramBaseController {
     const doneTodos = await findTodo({ done: true });
     console.log(doneTodos);
 
-//     if (!doneTodos.length) {
-//       $.runInlineMenu({
-//         layout: 1,
-//         method: "sendMessage",
-//         params: [`You have not completed any task`],
-//         menu: [
-//           {
-//             text: `View all uncompleted todos`,
-//             callback: async query => {
-//               bot.api.answerCallbackQuery(query.id, {
-//                 text: `Okay! Here they are.`
-//               });
+    if (!doneTodos.length) {
+      $.runInlineMenu({
+        layout: 1,
+        method: "sendMessage",
+        params: [`You have not completed any task`],
+        menu: [
+          {
+            text: `View all uncompleted todos`,
+            callback: async query => {
+              bot.api.answerCallbackQuery(query.id, {
+                text: `Okay! Here they are.`
+              });
 
-//               await this.allTodosHandler(scope);
-//             }
-//           }
-//         ]
-//       });
+              await this.allTodosHandler(scope);
+            }
+          }
+        ]
+      });
 
-//       return;
-//     }
+      return;
+    }
 
-//     let todos = `📝 *Completed Todos*\n\n`;
+    let todos = `📝 *Completed Todos*\n\n`;
 
-//     for (let i = 1; i <= doneTodos.length; i++) {
-//       const { _id, task, date, taskNumber } = doneTodos[i - 1];
+    for (let i = 1; i <= doneTodos.length; i++) {
+      const { _id, task, date, taskNumber } = doneTodos[i - 1];
 
-//       todos += `📌 ${i}\n${task} - (${date})\n\n`;
+      todos += `📌 ${i}\n${task} - (${date})\n\n`;
 
-//       buttons.push({
-//         text: `${i} ${emojis.delete}`,
-//         callback: async query => {
-//           await deleteTodo({ _id });
+      buttons.push({
+        text: `${i} ${emojis.delete}`,
+        callback: async query => {
+          await deleteTodo({ _id });
 
-//           bot.api.answerCallbackQuery(query.id, {
-//             text: `Successfully Deleted!`
-//           });
+          bot.api.answerCallbackQuery(query.id, {
+            text: `Successfully Deleted!`
+          });
 
-//           await this.doneTodosHandler(scope);
-//         }
-//       });
-//     }
+          await this.doneTodosHandler(scope);
+        }
+      });
+    }
 
-//     $.runInlineMenu({
-//       layout: 4, //some layouting here
-//       method: "sendMessage", //here you must pass the method name
-//       params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
-//       menu: buttons
-//     });
+    $.runInlineMenu({
+      layout: 4, //some layouting here
+      method: "sendMessage", //here you must pass the method name
+      params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
+      menu: buttons
+    });
   }
 
   get routes() {
