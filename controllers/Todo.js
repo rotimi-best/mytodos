@@ -19,7 +19,9 @@ class TodoController extends TelegramBaseController {
         error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
-            callback(true, message.text);
+            const msg = message.text;
+            const newTodo = msg.charAt(0).toUpperCase() + msg.slice(1);
+            callback(true, newTodo);
             return;
           }
           callback(false);
@@ -63,7 +65,6 @@ class TodoController extends TelegramBaseController {
    * @param {Scope} $
    */
   async allTodosHandler($) {
-    // const done = false;
     const scope = $;
     const telegramId = $.message.chat.id;
     const allTodos = await findTodo({ telegramId, done: false });
@@ -102,13 +103,12 @@ class TodoController extends TelegramBaseController {
     let todos = `📝 *All Todos*\n\n`;
 
     for (let i = 1; i <= allTodos.length; i++) {
-      const { _id, task, date, taskNumber } = allTodos[i - 1];
-      console.log(taskNumber);
+      const { _id, task, taskNumber } = allTodos[i - 1];
       const editCommand = `/edit` + `${taskNumber}`;
       todos += `📌 ${i}\n${task}\n${editCommand}\n\n`;
       buttons.push({
         text: `${i} ✅`,
-        callback: async (query, msg) => {
+        callback: async query => {
           await updateTodo({ _id: _id }, { done: true });
 
           bot.api.answerCallbackQuery(query.id, {
@@ -137,8 +137,7 @@ class TodoController extends TelegramBaseController {
     const scope = $;
     const buttons = [];
     const telegramId = $.message.chat.id;
-    const doneTodos = await findTodo({ done: true });
-    console.log(doneTodos);
+    const doneTodos = await findTodo({ telegramId, done: true });
 
     if (!doneTodos.length) {
       $.runInlineMenu({
@@ -199,7 +198,8 @@ class TodoController extends TelegramBaseController {
   async editTodosHandler($) {
     const message = $.message.text;
     const telegramId = $.message.chat.id;
-    const taskNumber = message.match(/\/edit([0-9]+)/)[1];
+    let taskNumber = message.match(/\/edit([0-9]+)/)[1];
+    taskNumber = Number(taskNumber);
 
     const form = {
       task: {
@@ -207,7 +207,9 @@ class TodoController extends TelegramBaseController {
         error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
-            callback(true, message.text);
+            const msg = message.text;
+            const newTodo = msg.charAt(0).toUpperCase() + msg.slice(1);
+            callback(true, newTodo);
             return;
           }
           callback(false);
@@ -218,7 +220,10 @@ class TodoController extends TelegramBaseController {
     $.runForm(form, async result => {
       const { task } = result;
       const done = false;
-      const todo = await updateTodo({ telegramId, taskNumber, done }, { task });
+      const todo = await updateTodo(
+        { telegramId, taskNumber, done: false },
+        { task }
+      );
 
       let customText = "";
       if (!todo) customText = `Sorry, edit wasn't successful`;
