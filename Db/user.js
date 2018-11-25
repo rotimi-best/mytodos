@@ -1,9 +1,9 @@
-const { todosDb } = require("./index");
+const { userDb } = require("./index");
 
-const addTodo = params => {
+const addUser = params => {
   return new Promise(async (resolve, reject) => {
     try {
-      const found = await todosDb.insert(params);
+      const found = await userDb.insert(params);
       resolve(found);
     } catch (error) {
       reject(error);
@@ -11,10 +11,10 @@ const addTodo = params => {
   });
 };
 
-const findTodo = params => {
+const findUser = params => {
   return new Promise(async (resolve, reject) => {
     try {
-      const found = await todosDb.find(params).sort({ taskNumber: 1 });
+      const found = await userDb.find(params).sort({ taskNumber: 1 });
       resolve(found);
     } catch (error) {
       reject(error);
@@ -22,10 +22,10 @@ const findTodo = params => {
   });
 };
 
-const updateTodo = (findField, setField) => {
+const updateUser = (findField, setField) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await todosDb.update(findField, setField);
+      await userDb.update(findField, setField);
       resolve(true);
     } catch (error) {
       reject(error);
@@ -33,10 +33,10 @@ const updateTodo = (findField, setField) => {
   });
 };
 
-const deleteTodo = (findField, setField) => {
+const deleteUser = (findField, setField) => {
   return new Promise(async (resolve, reject) => {
     try {
-      await todosDb.remove(findField, setField);
+      await userDb.remove(findField, setField);
       resolve(true);
     } catch (error) {
       reject(error);
@@ -45,8 +45,8 @@ const deleteTodo = (findField, setField) => {
 };
 
 module.exports = {
-  addTodo,
-  findTodo,
-  updateTodo,
-  deleteTodo
+  addUser,
+  findUser,
+  updateUser,
+  deleteUser
 };
