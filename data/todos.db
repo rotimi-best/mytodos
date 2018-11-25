@@ -28,3 +28,17 @@
 {"task":"Go to churh","date":"2018-11-24","telegramId":380473669,"done":true,"taskNumber":5,"_id":"oIo5ysSRskmHB4uR","createdAt":{"$$date":1543064561089},"updatedAt":{"$$date":1543089370552}}
 {"done":true,"_id":"xkcSOq5pdyTCQ67i","createdAt":{"$$date":1543097084609},"updatedAt":{"$$date":1543097826653}}
 {"done":true,"_id":"zi8SO8yjMJRttXFW","createdAt":{"$$date":1543063983330},"updatedAt":{"$$date":1543089188578}}
+{"task":"Brush my teeth","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"C05xSwYAwXi1uabF","createdAt":{"$$date":1543153054944},"updatedAt":{"$$date":1543153054944}}
+{"task":" Wash cloth","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"oLdjycAvn1eBNfG1","createdAt":{"$$date":1543153054947},"updatedAt":{"$$date":1543153054947}}
+{"task":" Fix computer","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"WaSPuBWe5tAIcBLk","createdAt":{"$$date":1543153054948},"updatedAt":{"$$date":1543153054948}}
+{"done":true,"_id":"OK8x6UoS4V3HWrEr","createdAt":{"$$date":1543141785859},"updatedAt":{"$$date":1543153077409}}
+{"done":true,"_id":"09gQ7kGMVmI8zQSN","createdAt":{"$$date":1543094053422},"updatedAt":{"$$date":1543153097454}}
+{"done":true,"_id":"C05xSwYAwXi1uabF","createdAt":{"$$date":1543153054944},"updatedAt":{"$$date":1543153102095}}
+{"done":true,"_id":"WaSPuBWe5tAIcBLk","createdAt":{"$$date":1543153054948},"updatedAt":{"$$date":1543153109522}}
+{"done":true,"_id":"oLdjycAvn1eBNfG1","createdAt":{"$$date":1543153054947},"updatedAt":{"$$date":1543153111005}}
+{"task":"Add deadline to task - (2018-11-25)","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"x4VaFJAstXnDCzT9","createdAt":{"$$date":1543153204276},"updatedAt":{"$$date":1543153204276}}
+{"task":"\nOption to delete todo #todobot - (2018-11-25)","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"1dBAb0GBaFIa030R","createdAt":{"$$date":1543153204278},"updatedAt":{"$$date":1543153204278}}
+{"task":" \nEdit todo","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"og8FvAbp69nG8rlq","createdAt":{"$$date":1543153204281},"updatedAt":{"$$date":1543153204281}}
+{"task":" Add more than one todo with a comma #mytodobot","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"B2JbXrNIZgo5LSCF","createdAt":{"$$date":1543153204285},"updatedAt":{"$$date":1543153204285}}
+{"done":true,"_id":"1dBAb0GBaFIa030R","createdAt":{"$$date":1543153204278},"updatedAt":{"$$date":1543153396873}}
+{"done":true,"_id":"B2JbXrNIZgo5LSCF","createdAt":{"$$date":1543153204285},"updatedAt":{"$$date":1543153411117}}

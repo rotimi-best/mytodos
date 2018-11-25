@@ -17,11 +17,12 @@ class TodoController extends TelegramBaseController {
     const telegramId = $.message.chat.id;
     const form = {
       task: {
-        q: "Send me your task",
+        q:
+          "Send me your task. To add more than one please use this format:\n\ntask 1, task 2, task 3",
         error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
-            callback(true, message.text); //you must pass the result also
+            callback(true, message.text);
             return;
           }
           callback(false);
@@ -33,8 +34,10 @@ class TodoController extends TelegramBaseController {
       const { task } = result;
       const done = false;
       const allTodos = await findTodo({ telegramId, done });
-      //   console.log(allTodos);
+
       let taskNumber = 1;
+      let tasks = task.split(",");
+
       if (allTodos.length) {
         let max = allTodos.reduce((prev, current) =>
           prev.taskNumber > current.taskNumber ? prev : current
@@ -42,16 +45,16 @@ class TodoController extends TelegramBaseController {
         taskNumber = max.taskNumber + 1;
       }
 
-      const todo = {
-        task,
-        date: date(),
-        telegramId,
-        done,
-        taskNumber
-      };
-
-      await addTodo(todo);
-      const cbData = JSON.stringify(scope);
+      for (let i = 0; i < tasks.length; i++) {
+        const todo = {
+          task: tasks[i],
+          date: date(),
+          telegramId,
+          done,
+          taskNumber
+        };
+        await addTodo(todo);
+      }
 
       $.runInlineMenu({
         layout: [1, 1],
