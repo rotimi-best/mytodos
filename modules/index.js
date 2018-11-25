@@ -139,7 +139,8 @@ const emojis = {
   wave: "👋",
   thumbsUp: "👍",
   thumbsDown: "👎",
-  ok: "👌"
+  ok: "👌",
+  delete: "🗑"
 };
 
 module.exports = {

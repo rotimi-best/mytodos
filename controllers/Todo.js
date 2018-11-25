@@ -1,7 +1,7 @@
 const { TelegramBaseController } = require("telegram-node-bot");
 const DatePicker = require("../controllers/DatePicker");
-const { date } = require("../modules");
-const { findTodo, addTodo, updateTodo } = require("../Db/todos");
+const { date, emojis } = require("../modules");
+const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
 
@@ -136,10 +136,72 @@ class TodoController extends TelegramBaseController {
         text: `${i} ✅`,
         callback: async (query, msg) => {
           await updateTodo({ telegramId, taskNumber }, { done: true });
+
           bot.api.answerCallbackQuery(query.id, {
             text: `You've completed task ${taskNumber}, Congratulations! 👏`
           });
+
           await this.allTodosHandler(scope);
+        }
+      });
+    }
+
+    $.runInlineMenu({
+      layout: 4, //some layouting here
+      method: "sendMessage", //here you must pass the method name
+      params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
+      menu: buttons
+    });
+  }
+
+  /**
+   * @param {Scope} $
+   */
+  async doneTodosHandler($) {
+    const scope = $;
+    const buttons = [];
+    const telegramId = $.message.chat.id;
+    const doneTodos = await findTodo({ telegramId, done: true });
+
+    if (!doneTodos.length) {
+      $.runInlineMenu({
+        layout: 1,
+        method: "sendMessage",
+        params: [`You have not completed any task`],
+        menu: [
+          {
+            text: `View all uncompleted todos`,
+            callback: async query => {
+              bot.api.answerCallbackQuery(query.id, {
+                text: `Okay! Here they are.`
+              });
+
+              await this.allTodosHandler(scope);
+            }
+          }
+        ]
+      });
+
+      return;
+    }
+
+    let todos = `📝 *Completed Todos*\n\n`;
+
+    for (let i = 1; i <= doneTodos.length; i++) {
+      const { _id, task, date, taskNumber } = doneTodos[i - 1];
+
+      todos += `📌 ${i}\n${task} - (${date})\n\n`;
+
+      buttons.push({
+        text: `${i} ${emojis.delete}`,
+        callback: async query => {
+          await deleteTodo({ _id });
+
+          bot.api.answerCallbackQuery(query.id, {
+            text: `Successfully Deleted!`
+          });
+
+          await this.doneTodosHandler(scope);
         }
       });
     }
@@ -155,7 +217,8 @@ class TodoController extends TelegramBaseController {
   get routes() {
     return {
       newTodoCommand: "newTodoHandler",
-      allTodosCommand: "allTodosHandler"
+      allTodosCommand: "allTodosHandler",
+      doneTodosCommand: "doneTodosHandler"
     };
   }
 }

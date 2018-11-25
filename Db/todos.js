@@ -33,10 +33,10 @@ const updateTodo = (findField, setField) => {
   });
 };
 
-const deleteTodo = (findField, setField) => {
+const deleteTodo = findField => {
   return new Promise(async (resolve, reject) => {
     try {
-      await todosDb.remove(findField, setField);
+      await todosDb.remove(findField);
       resolve(true);
     } catch (error) {
       reject(error);

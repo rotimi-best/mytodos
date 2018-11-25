@@ -35,6 +35,7 @@ bot.router
   .when(new TextCommand("/start", "startCommand"), new Start())
   .when(new TextCommand("/newtodo", "newTodoCommand"), new Todo())
   .when(new TextCommand("/mytodos", "allTodosCommand"), new Todo())
+  .when(new TextCommand("/donetodos", "doneTodosCommand"), new Todo())
   // .when(new TextCommand('/starttask', 'datePickerCommand'), new DatePicker('Start','Task begins from'))
   .when(
     new TextCommand("/endtask", "datePickerCommand"),

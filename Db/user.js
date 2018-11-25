@@ -33,10 +33,10 @@ const updateUser = (findField, setField) => {
   });
 };
 
-const deleteUser = (findField, setField) => {
+const deleteUser = findField => {
   return new Promise(async (resolve, reject) => {
     try {
-      await userDb.remove(findField, setField);
+      await userDb.remove(findField);
       resolve(true);
     } catch (error) {
       reject(error);
