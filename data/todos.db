@@ -1,25 +1,8 @@
-{"task":" go the extra miles","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":2,"_id":"2ax8qkUcK42SvDFk","createdAt":{"$$date":1543182805732},"updatedAt":{"$$date":1543182805732}}
-{"task":" Do boltinkkov rgr","date":"2018-11-25","telegramId":380473669,"done":true,"taskNumber":3,"_id":"GY1tkg6IDdYERrO4","createdAt":{"$$date":1543182805732},"updatedAt":{"$$date":1543182897860}}
-{"task":"write step by step task for tour bot","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":4,"_id":"RZ82ZhI1DoemTpwk","createdAt":{"$$date":1543182871219},"updatedAt":{"$$date":1543182871219}}
-{"task":"take care of somthings","date":"2018-11-25","telegramId":380473669,"done":false,"taskNumber":1,"_id":"ktsZdryrI8DNXiNT","createdAt":{"$$date":1543182805729},"updatedAt":{"$$date":1543182805729}}
-{"task":"write step by step task for tour bot","date":"2018-11-25","telegramId":380473669,"done":true,"taskNumber":4,"_id":"RZ82ZhI1DoemTpwk","createdAt":{"$$date":1543182871219},"updatedAt":{"$$date":1543219504672}}
-{"task":" go the extra miles","date":"2018-11-25","telegramId":380473669,"done":true,"taskNumber":2,"_id":"2ax8qkUcK42SvDFk","createdAt":{"$$date":1543182805732},"updatedAt":{"$$date":1543219506663}}
-{"task":"take care of somthings","date":"2018-11-25","telegramId":380473669,"done":true,"taskNumber":1,"_id":"ktsZdryrI8DNXiNT","createdAt":{"$$date":1543182805729},"updatedAt":{"$$date":1543219508225}}
-{"task":"Create functionality to insert cookies by script when linkedin logs out olegs account #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":1,"_id":"Eq4yPrEIb6xWDs9p","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
-{"task":" send connects to all leads in Lenas db #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":2,"_id":"o2Z1ueOpnV6YjXXX","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
 {"task":" create functionality to get all accepted connects within the last one month. #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":3,"_id":"CnTL94hQd0oIGAmJ","createdAt":{"$$date":1543219512233},"updatedAt":{"$$date":1543219512233}}
-{"task":"Clear memory space from puppeteer #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":4,"_id":"sHJFVH9M8Bj0D0xj","createdAt":{"$$date":1543219625952},"updatedAt":{"$$date":1543219625952}}
-{"task":"Fix error with interface for checking for accepted connects","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543220746636}}
-{"task":"Fix error with interface for checking for accepted connect #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543220763833}}
-{"task":"User should be able to click on /copytask then the task should be copied #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":6,"_id":"Y5imNOASzy16PaPc","createdAt":{"$$date":1543222449658},"updatedAt":{"$$date":1543222449658}}
-{"task":"","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"F2whUVGvQor8FilC","createdAt":{"$$date":1543222449659},"updatedAt":{"$$date":1543222449659}}
-{"task":"","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":7,"_id":"F2whUVGvQor8FilC","createdAt":{"$$date":1543222449659},"updatedAt":{"$$date":1543222459822}}
-{"$$deleted":true,"_id":"F2whUVGvQor8FilC"}
-{"$$deleted":true,"_id":"2ax8qkUcK42SvDFk"}
-{"task":"Fix error with memory space on VM","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543231511848}}
-{"$$deleted":true,"_id":"ktsZdryrI8DNXiNT"}
-{"$$deleted":true,"_id":"GY1tkg6IDdYERrO4"}
-{"$$deleted":true,"_id":"RZ82ZhI1DoemTpwk"}
-{"task":"Fix error with memory space on VM","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543233530908}}
-{"task":"Clear memory space from puppeteer #work","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":4,"_id":"sHJFVH9M8Bj0D0xj","createdAt":{"$$date":1543219625952},"updatedAt":{"$$date":1543233554362}}
+{"task":"Create functionality to insert cookies by script when linkedin logs out olegs account #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":1,"_id":"Eq4yPrEIb6xWDs9p","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
 {"task":"Functionality to prioritize tasks","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"PUPw4UIln2nhGrRU","createdAt":{"$$date":1543233640890},"updatedAt":{"$$date":1543233640890}}
+{"task":"User should be able to click on /copytask then the task should be copied #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":6,"_id":"Y5imNOASzy16PaPc","createdAt":{"$$date":1543222449658},"updatedAt":{"$$date":1543222449658}}
+{"task":"Fix error with memory space on VM","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543233530908}}
+{"task":" send connects to all leads in Lenas db #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":2,"_id":"o2Z1ueOpnV6YjXXX","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
+{"task":"Зарегать эверест","date":"2018-11-26","telegramId":284825945,"done":true,"taskNumber":1,"_id":"oRVDGJEo1uxFaxnf","createdAt":{"$$date":1543235089972},"updatedAt":{"$$date":1543235271969}}
+{"task":"Clear memory space from puppeteer #work","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":4,"_id":"sHJFVH9M8Bj0D0xj","createdAt":{"$$date":1543219625952},"updatedAt":{"$$date":1543233554362}}
