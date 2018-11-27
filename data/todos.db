@@ -1,30 +1,12 @@
-{"task":" create functionality to get all accepted connects within the last one month. #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":3,"_id":"CnTL94hQd0oIGAmJ","createdAt":{"$$date":1543219512233},"updatedAt":{"$$date":1543219512233}}
+{"task":"Create a new database in the VM and leave mlab","date":"2018-11-27","telegramId":380473669,"done":false,"taskNumber":14,"_id":"4CPXziABMP5A4EOG","createdAt":{"$$date":1543325494068},"updatedAt":{"$$date":1543325494068}}
+{"task":"Find all those who were sent connects without texts #work","date":"2018-11-27","telegramId":380473669,"done":true,"taskNumber":16,"_id":"8Y7XBOuETyIcViU5","createdAt":{"$$date":1543332977298},"updatedAt":{"$$date":1543337210255}}
+{"task":"Complete sending leads connect #work ","date":"2018-11-27","telegramId":380473669,"done":false,"taskNumber":12,"_id":"AzD5Qbb4qpsDmw89","createdAt":{"$$date":1543322832190},"updatedAt":{"$$date":1543322832190}}
 {"task":"Create functionality to insert cookies by script when linkedin logs out olegs account #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":1,"_id":"Eq4yPrEIb6xWDs9p","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
-{"task":"Functionality to prioritize tasks","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"PUPw4UIln2nhGrRU","createdAt":{"$$date":1543233640890},"updatedAt":{"$$date":1543233640890}}
-{"task":"User should be able to click on /copytask then the task should be copied #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":6,"_id":"Y5imNOASzy16PaPc","createdAt":{"$$date":1543222449658},"updatedAt":{"$$date":1543222449658}}
-{"task":"Fix error with memory space on VM","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543233530908}}
+{"task":"Restore completed todos #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":11,"_id":"GjnUzpyOTxPfV01H","createdAt":{"$$date":1543252231850},"updatedAt":{"$$date":1543325430484}}
+{"task":"Functionality to prioritize tasks #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"PUPw4UIln2nhGrRU","createdAt":{"$$date":1543233640890},"updatedAt":{"$$date":1543237941318}}
+{"task":" create bot to manage anywhere #work ","date":"2018-11-27","telegramId":380473669,"done":false,"taskNumber":13,"_id":"Qp0qP2iTy7cXJ7Pg","createdAt":{"$$date":1543322832195},"updatedAt":{"$$date":1543322832195}}
+{"task":"Read this later https://medium.com/front-end-hacking/my-node-js-memory-leak-and-some-memory-management-and-garbage-collection-6281a5308b4e","date":"2018-11-27","telegramId":380473669,"done":false,"taskNumber":15,"_id":"fPjUjGwwhbBNSqPA","createdAt":{"$$date":1543326077545},"updatedAt":{"$$date":1543326077545}}
+{"task":"Create a cron job to check for accepted leads","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":10,"_id":"jrcA5QW0dVLAtT00","createdAt":{"$$date":1543247636083},"updatedAt":{"$$date":1543344092549}}
+{"task":"Create a functionality to add a subtask to a particular task. When they click on /addsubtask they should be able to add more tasks related to that task","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":8,"_id":"mFVCTqY5xzKb4mWT","createdAt":{"$$date":1543238398278},"updatedAt":{"$$date":1543238398278}}
 {"task":" send connects to all leads in Lenas db #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":2,"_id":"o2Z1ueOpnV6YjXXX","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
 {"task":"Зарегать эверест","date":"2018-11-26","telegramId":284825945,"done":true,"taskNumber":1,"_id":"oRVDGJEo1uxFaxnf","createdAt":{"$$date":1543235089972},"updatedAt":{"$$date":1543235271969}}
-{"task":"Clear memory space from puppeteer #work","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":4,"_id":"sHJFVH9M8Bj0D0xj","createdAt":{"$$date":1543219625952},"updatedAt":{"$$date":1543233554362}}
-{"task":"Functionality to prioritize tasks #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"PUPw4UIln2nhGrRU","createdAt":{"$$date":1543233640890},"updatedAt":{"$$date":1543237941318}}
-{"task":"Create a functionality to add a subtask to a particular task. When they click on /addsubtask they should be able to add more tasks related to that task","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":8,"_id":"mFVCTqY5xzKb4mWT","createdAt":{"$$date":1543238398278},"updatedAt":{"$$date":1543238398278}}
-{"task":"Let script upload to a spreadsheet the list of peple that connect messages were sent to #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":9,"_id":"VYtrBX759B7s4ZE7","createdAt":{"$$date":1543247575391},"updatedAt":{"$$date":1543247575391}}
-{"task":"Create a cron job to check for accepted leads","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":10,"_id":"jrcA5QW0dVLAtT00","createdAt":{"$$date":1543247636083},"updatedAt":{"$$date":1543247636083}}
-{"task":" empty message and then upload to spreadsheet","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":11,"_id":"XxQ57pXqx5z46YPW","createdAt":{"$$date":1543247636083},"updatedAt":{"$$date":1543247636083}}
-{"task":"User should be able to click on /copytask then the task should be copied #todobot","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":6,"_id":"Y5imNOASzy16PaPc","createdAt":{"$$date":1543222449658},"updatedAt":{"$$date":1543251192069}}
-{"task":" create functionality to get all accepted connects within the last one month. #work #cookies","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":3,"_id":"CnTL94hQd0oIGAmJ","createdAt":{"$$date":1543219512233},"updatedAt":{"$$date":1543251714567}}
-{"task":"Let script upload to a spreadsheet the list of peple that connect messages were sent to #todobot","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":9,"_id":"VYtrBX759B7s4ZE7","createdAt":{"$$date":1543247575391},"updatedAt":{"$$date":1543251737136}}
-{"task":" empty message and then upload to spreadsheet","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":11,"_id":"XxQ57pXqx5z46YPW","createdAt":{"$$date":1543247636083},"updatedAt":{"$$date":1543251800029}}
-{"task":"Restore completed todos","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":11,"_id":"GjnUzpyOTxPfV01H","createdAt":{"$$date":1543252231850},"updatedAt":{"$$date":1543252231850}}
-{"task":"Task 3","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":12,"_id":"mtWUUiLh5OebIbV1","createdAt":{"$$date":1543252273277},"updatedAt":{"$$date":1543252273277}}
-{"task":"","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":13,"_id":"QrBTMosjWDHZtpBc","createdAt":{"$$date":1543252273278},"updatedAt":{"$$date":1543252273278}}
-{"task":"","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":13,"_id":"QrBTMosjWDHZtpBc","createdAt":{"$$date":1543252273278},"updatedAt":{"$$date":1543252283040}}
-{"$$deleted":true,"_id":"QrBTMosjWDHZtpBc"}
-{"task":"Task 3","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":12,"_id":"mtWUUiLh5OebIbV1","createdAt":{"$$date":1543252273277},"updatedAt":{"$$date":1543252395068}}
-{"$$deleted":true,"_id":"mtWUUiLh5OebIbV1"}
-{"$$deleted":true,"_id":"XxQ57pXqx5z46YPW"}
-{"$$deleted":true,"_id":"VYtrBX759B7s4ZE7"}
-{"$$deleted":true,"_id":"Y5imNOASzy16PaPc"}
-{"$$deleted":true,"_id":"mJDmIbkJeEFxp5ft"}
-{"$$deleted":true,"_id":"sHJFVH9M8Bj0D0xj"}
-{"$$deleted":true,"_id":"CnTL94hQd0oIGAmJ"}
