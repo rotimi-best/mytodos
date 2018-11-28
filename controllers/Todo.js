@@ -1,6 +1,7 @@
 const { TelegramBaseController } = require("telegram-node-bot");
+const clipboardy = require('clipboardy');
 const DatePicker = require("../controllers/DatePicker");
-const { date, emojis } = require("../modules");
+const { date, emojis, sendToAdmin } = require("../modules");
 const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
@@ -10,11 +11,9 @@ class TodoController extends TelegramBaseController {
    * @param {Scope} $
    */
   async newTodoHandler($) {
-    // const start = new DatePicker('Start','Task begins from');
-    // const enddate = new DatePicker('Finish','Task deadline is');
-    // let dateChoosen = await start.datePickerHandler($);
     const scope = $;
     const telegramId = $.message.chat.id;
+
     const form = {
       task: {
         q:
@@ -22,9 +21,12 @@ class TodoController extends TelegramBaseController {
         error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
-            callback(true, message.text);
+            const msg = message.text;
+            const newTodo = msg.charAt(0).toUpperCase() + msg.slice(1);
+            callback(true, newTodo);
             return;
           }
+
           callback(false);
         }
       }
@@ -57,41 +59,17 @@ class TodoController extends TelegramBaseController {
         await addTodo(todo);
       }
 
-      $.runInlineMenu({
-        layout: [1, 1],
-        method: "sendMessage",
-        params: [`Great, I've added it. What do you want to do next?`],
-        menu: [
-          {
-            text: `View all todos`,
-            callback: async query => {
-              bot.api.answerCallbackQuery(query.id, {
-                text: `Okay! Here they are.`
-              });
-
-              await this.allTodosHandler(scope);
-            }
-          },
-          {
-            text: `Add a new todo`,
-            callback: async query => {
-              bot.api.answerCallbackQuery(query.id, {
-                text: `Okay! Lets go.`
-              });
-
-              await this.newTodoHandler(scope);
-            }
-          }
-        ]
-      });
+      await this.suggestNextStepToUser($, `Great, I've added it.`);
     });
+
+    sendToAdmin('Someone just created a new todo');
   }
 
   /**
+   * List all uncompleted todos
    * @param {Scope} $
    */
   async allTodosHandler($) {
-    // const done = false;
     const scope = $;
     const telegramId = $.message.chat.id;
     const allTodos = await findTodo({ telegramId, done: false });
@@ -123,6 +101,7 @@ class TodoController extends TelegramBaseController {
           });
         }
       });
+
       return;
     }
     const buttons = [];
@@ -130,13 +109,15 @@ class TodoController extends TelegramBaseController {
     let todos = `📝 *All Todos*\n\n`;
 
     for (let i = 1; i <= allTodos.length; i++) {
-      const { _id, task, date, taskNumber } = allTodos[i - 1];
-      console.log(taskNumber);
-      const editCommand = `/edit`+`${taskNumber}`;
-      todos += `📌 ${i}${task}\n${editCommand}\n\n`;
+      const { _id, task, taskNumber } = allTodos[i - 1];
+      const editCommand = `/edittodo` + `${taskNumber}`;
+      const copyCommand = `/copytodo` + `${taskNumber}`;
+
+      todos += `📌 ${i}\n${task}\n${editCommand} \t ${copyCommand}\n\n`;
+
       buttons.push({
         text: `${i} ✅`,
-        callback: async (query, msg) => {
+        callback: async query => {
           await updateTodo({ _id: _id }, { done: true });
 
           bot.api.answerCallbackQuery(query.id, {
@@ -154,17 +135,20 @@ class TodoController extends TelegramBaseController {
       params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
       menu: buttons
     });
+
+    sendToAdmin('Someone just got all todo');
   }
 
   /**
+   * Return Completed todo
+   *
    * @param {Scope} $
    */
   async doneTodosHandler($) {
     const scope = $;
     const buttons = [];
     const telegramId = $.message.chat.id;
-    const doneTodos = await findTodo({ done: true });
-    console.log(doneTodos);
+    const doneTodos = await findTodo({ telegramId, done: true });
 
     if (!doneTodos.length) {
       $.runInlineMenu({
@@ -191,7 +175,7 @@ class TodoController extends TelegramBaseController {
     let todos = `📝 *Completed Todos*\n\n`;
 
     for (let i = 1; i <= doneTodos.length; i++) {
-      const { _id, task, date, taskNumber } = doneTodos[i - 1];
+      const { _id, task, date } = doneTodos[i - 1];
 
       todos += `📌 ${i}\n${task} - (${date})\n\n`;
 
@@ -210,10 +194,113 @@ class TodoController extends TelegramBaseController {
     }
 
     $.runInlineMenu({
-      layout: 4, //some layouting here
-      method: "sendMessage", //here you must pass the method name
-      params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
+      layout: 4,
+      method: "sendMessage",
+      params: [todos, { parse_mode: "Markdown" }],
       menu: buttons
+    });
+
+    sendToAdmin('Someone just checked done todos');
+  }
+
+  /**
+   * Edit a todo
+   *
+   * @param {Scope} $
+   */
+  async editTodosHandler($) {
+    const message = $.message.text;
+    const telegramId = $.message.chat.id;
+    let taskNumber = message.match(/\/edittodo([0-9]+)/)[1];
+    taskNumber = Number(taskNumber);
+
+    const form = {
+      task: {
+        q: "Okay what do you want to change it to?",
+        error: "Sorry, thats not a valid task, try again",
+        validator: (message, callback) => {
+          if (message.text) {
+            const msg = message.text;
+            const newTodo = msg.charAt(0).toUpperCase() + msg.slice(1);
+            callback(true, newTodo);
+            return;
+          }
+          callback(false);
+        }
+      }
+    };
+
+    $.runForm(form, async result => {
+      const { task } = result;
+      const todo = await updateTodo(
+        { telegramId, taskNumber, done: false },
+        { task });
+
+      let customText = "";
+      if (!todo) customText = `Sorry, edit wasn't successful`;
+      else customText = `Edited successfully!`;
+
+      await this.suggestNextStepToUser($, customText);
+
+      return;
+    });
+
+    sendToAdmin('Someone just editted todos');
+  }
+
+  /**
+   * Copy a todo to clipboard
+   *
+   * @param {Scope} $
+   */
+  async copyTodosHandler($) {
+    const message = $.message.text;
+    const telegramId = $.message.chat.id;
+    let taskNumber = message.match(/\/copytodo([0-9]+)/)[1];
+    taskNumber = Number(taskNumber);
+
+    const todos = await findTodo({ telegramId, taskNumber });
+
+    let customText = "";
+    if (!todos.length) {
+      customText = `Sorry, I could't copy that task ${emojis.sad}`;
+    } else {
+      customText = `${emojis.smile}I copied that for you! Now you can paste it anywhere.`;
+      clipboardy.writeSync(todos[0].task);
+    }
+
+    await this.suggestNextStepToUser($, customText);
+
+    sendToAdmin('Someone just copied a todo');
+  }
+
+  async suggestNextStepToUser($, customText) {
+    $.runInlineMenu({
+      layout: [1, 1],
+      method: "sendMessage",
+      params: [`${customText} What do you want to do next?`],
+      menu: [
+        {
+          text: `View all todos`,
+          callback: async query => {
+            bot.api.answerCallbackQuery(query.id, {
+              text: `Okay! Here they are.`
+            });
+
+            await this.allTodosHandler($);
+          }
+        },
+        {
+          text: `Add a new todo`,
+          callback: async query => {
+            bot.api.answerCallbackQuery(query.id, {
+              text: `Okay! Lets go.`
+            });
+
+            await this.newTodoHandler($);
+          }
+        }
+      ]
     });
   }
 
@@ -221,6 +308,8 @@ class TodoController extends TelegramBaseController {
     return {
       newTodoCommand: "newTodoHandler",
       allTodosCommand: "allTodosHandler",
+      editTodosCommand: "editTodosHandler",
+      copyTodosCommand: "copyTodosHandler",
       doneTodosCommand: "doneTodosHandler"
     };
   }

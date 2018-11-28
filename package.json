@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Rotimi-Best/mytodos#readme",
   "dependencies": {
     "calendar": "^0.1.0",
+    "clipboardy": "^1.2.3",
     "dotenv": "^6.1.0",
     "nedb-promises": "^3.0.2",
     "nodemon": "^1.18.6",
