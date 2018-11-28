@@ -1,4 +1,7 @@
 const CONSTANTS = require("../helpers/constants");
+const Bot = require("../helpers/botConnection");
+const bot = Bot.get();
+require("dotenv").config();
 
 /**
  * @param {Object} params This should be an Object with fields you need in order to manipulate the date.
@@ -122,6 +125,15 @@ const reduceDay = (value, date) => {
     : today.setDate(parseInt(date.replace(/\d+(-)\d+(-)(0)/g, "")) + value);
   return past;
 };
+
+/**
+ * Send message to admin
+ * @param {String} msg Message to send to admin
+ */
+const sendToAdmin = (msg) => {
+  bot.api.sendMessage(process.env.ADMIN, '*BOT-FEEDBACK: *'+msg, {parse_mode: 'Markdown'});
+}
+
 const emojis = {
   smile: "🙂",
   sad: "😞",
@@ -148,5 +160,6 @@ module.exports = {
   time,
   emojis,
   reduceDay,
-  increaseDay
+  increaseDay,
+  sendToAdmin
 };

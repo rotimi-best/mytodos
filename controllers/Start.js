@@ -4,7 +4,7 @@ const { addUser, findUser } = require("../Db/user");
 const TodoController = require("./Todo");
 const todos = new TodoController();
 const {
-  emojis: { wave, thumbsUp, thumbsDown, ok }
+  sendToAdmin, emojis: { wave, thumbsUp, thumbsDown, ok }
 } = require("../modules");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
@@ -29,6 +29,7 @@ class StartController extends TelegramBaseController {
 
     if (user.length) {
       this.nameOfUser = user[0].name;
+      sendToAdmin(`User came back ${this.nameOfUser}`);
 
       $.runInlineMenu({
         layout: [1, 1],
@@ -70,6 +71,8 @@ class StartController extends TelegramBaseController {
       return;
     }
 
+    sendToAdmin(`You have a new user, Name: ${userName}`);
+
     $.sendMessage(`Hi there! ${wave} Can I call you ${userName}?`, {
       reply_markup: JSON.stringify({
         keyboard: [
@@ -82,6 +85,8 @@ class StartController extends TelegramBaseController {
 
     $.waitForRequest.then(async $ => {
       if ($.message.text === `Yes ${thumbsUp}`) {
+        sendToAdmin(`User choose Yes ${userName}`);
+
         $.sendMessage(
           `Okay, Thanks ${userName} ${ok}.\n\nI can help you organize your tasks by allowing you create a todolist.\n\nYou can control me with these commands:\n\n/newtodo - add a task to your todolist\n\n/mytodos - all your pending tasks\n/donetodos - all done todos\n\n/categories - manage todos in categories\n\n/help - ask for help\n/feedback - give me your feedback.`,
           {
@@ -96,6 +101,9 @@ class StartController extends TelegramBaseController {
 
         $.waitForRequest.then(async $ => {
           userName = $.message.text;
+
+          sendToAdmin(`User choose No ${userName}`);
+
           $.sendMessage(
             `Okay, Thanks ${userName} ${ok}.\n\nI can help you organize your tasks by allowing you create a todolist.\n\nYou can control me with these commands:\n\n/newtodo - add a task to your todolist\n\n/mytodos - all your pending tasks\n/donetodos - all done todos\n\n/categories - manage todos in categories\n\n/help - ask for help\n/feedback - give me your feedback.`,
             {

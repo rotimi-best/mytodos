@@ -17,4 +17,5 @@ bot.router
     new TextCommand("/endtask", "datePickerCommand"),
     new DatePicker("Finish", "Task deadline is")
   )
-  .when(new RegexpCommand(/\/edit/, "editTodosCommand"), new Todo());
+  .when(new RegexpCommand(/\/edittodo/, "editTodosCommand"), new Todo())
+  .when(new RegexpCommand(/\/copytodo/, "copyTodosCommand"), new Todo());
