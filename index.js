@@ -1,5 +1,6 @@
 const { TextCommand, RegexpCommand } = require("telegram-node-bot");
 const bot = require("./helpers/botConnection").get();
+require('dotenv').config();
 
 const Todo = require("./controllers/Todo");
 const DatePicker = require("./controllers/DatePicker");

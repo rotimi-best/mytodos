@@ -1,11 +1,33 @@
-{"task":" create functionality to get all accepted connects within the last one month. #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":3,"_id":"CnTL94hQd0oIGAmJ","createdAt":{"$$date":1543219512233},"updatedAt":{"$$date":1543219512233}}
+{"task":"Fix memory space #work","date":"2018-11-30","telegramId":380473669,"done":true,"taskNumber":14,"_id":"2avBAvBqZD0caaHr","createdAt":{"$$date":1543575900113},"updatedAt":{"$$date":1543602329807}}
+{"task":"Create a script that after 3 days the script checks for all the inbox of the previous 3 days and save if it wasn't saved","date":"2018-11-28","telegramId":380473669,"done":false,"taskNumber":13,"_id":"3y6jEau61OMOoNJj","createdAt":{"$$date":1543420681502},"updatedAt":{"$$date":1543420681502}}
+{"task":"Give review to yesterdays talk on nodejs #work","date":"2018-11-30","telegramId":380473669,"done":false,"taskNumber":18,"_id":"7YiyHrGdiLQDSuxm","createdAt":{"$$date":1543576815386},"updatedAt":{"$$date":1543576815386}}
+{"task":"Get all leads from the dead leads who didn't respond to our messages and then begin sending them sending them the 2nd message","date":"2018-11-28","telegramId":380473669,"done":true,"taskNumber":12,"_id":"CBxJjYsDRjEHqjS5","createdAt":{"$$date":1543420574573},"updatedAt":{"$$date":1543602345355}}
+{"task":"Create a universal script that checks if page is logged out then log back in, stop every other script, sign back in, save the cookies and then continue each script","date":"2018-11-28","telegramId":380473669,"done":false,"taskNumber":11,"_id":"CRzpL8sN58XfmSfp","createdAt":{"$$date":1543419610544},"updatedAt":{"$$date":1543419610544}}
+{"task":" create functionality to get all accepted connects within the last one month. #work #cookies","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":3,"_id":"CnTL94hQd0oIGAmJ","createdAt":{"$$date":1543219512233},"updatedAt":{"$$date":1543410086908}}
 {"task":"Add the otherwise controller to bot #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":8,"_id":"CucUdTNCwO6ApHLR","createdAt":{"$$date":1543273193076},"updatedAt":{"$$date":1543273193076}}
 {"task":"Create functionality to insert cookies by script when linkedin logs out olegs account #work #cookies","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":1,"_id":"Eq4yPrEIb6xWDs9p","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
+{"task":" fix bug with checking if someone replied after 1st msg #work","date":"2018-11-30","telegramId":380473669,"done":false,"taskNumber":15,"_id":"L8tIHtBuFjSe5sUA","createdAt":{"$$date":1543575900115},"updatedAt":{"$$date":1543575900115}}
 {"task":"Functionality to prioritize tasks","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"PUPw4UIln2nhGrRU","createdAt":{"$$date":1543233640890},"updatedAt":{"$$date":1543233640890}}
+{"task":"/mytodos","date":"2018-11-30","telegramId":380473669,"done":true,"taskNumber":21,"_id":"Qx7uxsfvkCMX4FHw","createdAt":{"$$date":1543602285130},"updatedAt":{"$$date":1543602291128}}
+{"task":"Fix bug with adding more than one todo where the first letter is not capital letter","date":"2018-11-30","telegramId":380473669,"done":false,"taskNumber":17,"_id":"Tlsu3huBJCh67fBK","createdAt":{"$$date":1543575976300},"updatedAt":{"$$date":1543575976300}}
+{"task":"Add error handler to bot #todobot","date":"2018-11-30","telegramId":380473669,"done":false,"taskNumber":20,"_id":"TzxIMDPwxp0ngYS3","createdAt":{"$$date":1543580101534},"updatedAt":{"$$date":1543580101534}}
+{"task":"Create a new task on pm with the restrictions you discussed with Boss #work","date":"2018-11-28","telegramId":380473669,"done":true,"taskNumber":9,"_id":"WKk28GEuXtqGDk7r","createdAt":{"$$date":1543399778758},"updatedAt":{"$$date":1543410072610}}
 {"task":"User should be able to click on /copytask then the task should be copied #todobot","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":6,"_id":"Y5imNOASzy16PaPc","createdAt":{"$$date":1543222449658},"updatedAt":{"$$date":1543237517864}}
+{"task":"Analyze all the functionalities that depend on the login #work","date":"2018-11-28","telegramId":380473669,"done":true,"taskNumber":10,"_id":"lY9M6ts7Lf7JXZpz","createdAt":{"$$date":1543399854100},"updatedAt":{"$$date":1543602354543}}
 {"task":"Fix error with memory space on VM","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":5,"_id":"mJDmIbkJeEFxp5ft","createdAt":{"$$date":1543220746636},"updatedAt":{"$$date":1543233530908}}
 {"task":" send connects to all leads in Lenas db #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":2,"_id":"o2Z1ueOpnV6YjXXX","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
 {"task":"Зарегать эверест","date":"2018-11-26","telegramId":284825945,"done":true,"taskNumber":1,"_id":"oRVDGJEo1uxFaxnf","createdAt":{"$$date":1543235089972},"updatedAt":{"$$date":1543235271969}}
 {"task":"Clear memory space from puppeteer #work","date":"2018-11-26","telegramId":380473669,"done":true,"taskNumber":4,"_id":"sHJFVH9M8Bj0D0xj","createdAt":{"$$date":1543219625952},"updatedAt":{"$$date":1543233554362}}
-{"task":"Create a new task on pm with the restrictions you discussed with Boss #work","date":"2018-11-28","telegramId":380473669,"done":false,"taskNumber":9,"_id":"WKk28GEuXtqGDk7r","createdAt":{"$$date":1543399778758},"updatedAt":{"$$date":1543399778758}}
-{"task":"Analyze all the functionalities that depend on the login #work","date":"2018-11-28","telegramId":380473669,"done":false,"taskNumber":10,"_id":"lY9M6ts7Lf7JXZpz","createdAt":{"$$date":1543399854100},"updatedAt":{"$$date":1543399854100}}
+{"task":"Make a simple telegram bot for error messages #work","date":"2018-11-30","telegramId":380473669,"done":true,"taskNumber":19,"_id":"whfCnDPy49EfMMU5","createdAt":{"$$date":1543578809693},"updatedAt":{"$$date":1543602315337}}
+{"task":"Update email code to send all emails that were not sent #work","date":"2018-11-30","telegramId":380473669,"done":true,"taskNumber":16,"_id":"z6xUrQleuZhfUoXo","createdAt":{"$$date":1543575900115},"updatedAt":{"$$date":1543597808637}}
+{"$$deleted":true,"_id":"CnTL94hQd0oIGAmJ"}
+{"$$deleted":true,"_id":"sHJFVH9M8Bj0D0xj"}
+{"$$deleted":true,"_id":"mJDmIbkJeEFxp5ft"}
+{"$$deleted":true,"_id":"Y5imNOASzy16PaPc"}
+{"$$deleted":true,"_id":"WKk28GEuXtqGDk7r"}
+{"$$deleted":true,"_id":"2avBAvBqZD0caaHr"}
+{"$$deleted":true,"_id":"whfCnDPy49EfMMU5"}
+{"$$deleted":true,"_id":"z6xUrQleuZhfUoXo"}
+{"$$deleted":true,"_id":"CBxJjYsDRjEHqjS5"}
+{"$$deleted":true,"_id":"Qx7uxsfvkCMX4FHw"}
+{"$$deleted":true,"_id":"lY9M6ts7Lf7JXZpz"}

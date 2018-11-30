@@ -7,6 +7,7 @@ const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
 
 class TodoController extends TelegramBaseController {
+
   /**
    * @param {Scope} $
    */
@@ -16,8 +17,7 @@ class TodoController extends TelegramBaseController {
 
     const form = {
       task: {
-        q:
-          "Send me your task. To add more than one please use this format:\n\ntask 1, task 2, task 3",
+        q: "Send me your task. To add more than one please use this format:\n\ntask 1,, task 2,, task 3",
         error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
@@ -38,7 +38,7 @@ class TodoController extends TelegramBaseController {
       const allTodos = await findTodo({ telegramId, done });
 
       let taskNumber = 1;
-      let tasks = task.split(",");
+      let tasks = task.split(",,");
 
       if (allTodos.length) {
         let max = allTodos.reduce((prev, current) =>
@@ -48,15 +48,19 @@ class TodoController extends TelegramBaseController {
       }
 
       for (let i = 0; i < tasks.length; i++) {
-        const todo = {
-          task: tasks[i],
-          date: date(),
-          telegramId,
-          done,
-          taskNumber
-        };
-        taskNumber += 1;
-        await addTodo(todo);
+        if (tasks[i].length) {
+          const todo = {
+            task: tasks[i],
+            date: date(),
+            telegramId,
+            done,
+            taskNumber
+          };
+
+          taskNumber += 1;
+          
+          await addTodo(todo);
+        }
       }
 
       await this.suggestNextStepToUser($, `Great, I've added it.`);
