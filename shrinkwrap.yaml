@@ -2,6 +2,7 @@ dependencies:
   calendar: 0.1.0
   clipboardy: 1.2.3
   dotenv: 6.1.0
+  mongoose: 5.3.14
   nedb-promises: 3.0.2
   nodemon: 1.18.6
   telegram-node-bot: 4.0.5
@@ -79,6 +80,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-trvgsGdLnXGXCMo43owjfLUmw9E=
+  /async/2.6.1:
+    dependencies:
+      lodash: 4.17.11
+    dev: false
+    resolution:
+      integrity: sha512-fNEiL2+AZt6AlAw/29Cr0UDe4sRAHCpEHh54WMz+Bb7QfNcFw4h3loofyJpLeQs4Yx7yuqu/2dLgM5hKOs6HlQ==
   /atob/2.1.2:
     dev: false
     engines:
@@ -116,6 +123,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-fbs7IQ/coIJFDa0jNMMErzm9x4Q=
+  /bluebird/3.5.1:
+    dev: false
+    resolution:
+      integrity: sha512-MKiLiV+I1AA596t9w1sQJ8jkiSr5+ZKi0WKrYGUn6d1Fx+Ij4tIj+m2WMQSGczs5jZVxV339chE8iwk6F64wjA==
   /boxen/1.3.0:
     dependencies:
       ansi-align: 2.0.0
@@ -154,6 +165,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-aNdbnj9P8PjdXU4ybaWLK2IF3jc/EoDYbC7AazW6to3TRsfXxscC9UXOB5iDiEQrkyIbWp2SLQda4+QAa7nc3w==
+  /bson/1.1.0:
+    dev: false
+    engines:
+      node: '>=0.6.19'
+    resolution:
+      integrity: sha512-9Aeai9TacfNtWXOYarkFJRW2CWo+dRon+fuLZYJmvLV3+MiUp0bEI6IAZfXEIg7/Pl/7IWlLaDnhzTsD81etQA==
   /cache-base/1.0.1:
     dependencies:
       collection-visit: 1.0.0
@@ -323,6 +340,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
+  /debug/3.1.0:
+    dependencies:
+      ms: 2.0.0
+    dev: false
+    resolution:
+      integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
   /debug/3.2.6:
     dependencies:
       ms: 2.1.1
@@ -823,6 +846,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
+  /kareem/2.3.0:
+    dev: false
+    resolution:
+      integrity: sha512-6hHxsp9e6zQU8nXsP+02HGWXwTkOEw6IROhF2ZA28cYbUk4eJ6QbtZvdqZOdD9YPKghG3apk5eOCvs+tLl3lRg==
   /kind-of/3.2.2:
     dependencies:
       is-buffer: 1.1.6
@@ -875,6 +902,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-gteb/zCmfEAF/9XiUVMArZyk168=
+  /lodash.get/4.4.2:
+    dev: false
+    resolution:
+      integrity: sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+  /lodash/4.17.11:
+    dev: false
+    resolution:
+      integrity: sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
   /lowercase-keys/1.0.1:
     dev: false
     engines:
@@ -910,6 +945,11 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-7Nyo8TFE5mDxtb1B8S80edmN+48=
+  /memory-pager/1.1.0:
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha512-Mf9OHV/Y7h6YWDxTzX/b4ZZ4oh9NSXblQL8dtPCOomOtZciEHxePR78+uHFLLlsk01A6jVHhHsQZZ/WcIPpnzg==
   /micromatch/3.1.10:
     dependencies:
       arr-diff: 4.0.0
@@ -960,6 +1000,69 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /mongodb-core/3.1.9:
+    dependencies:
+      bson: 1.1.0
+      require_optional: 1.0.1
+      safe-buffer: 5.1.2
+    dev: false
+    optionalDependencies:
+      saslprep: 1.0.2
+    resolution:
+      integrity: sha512-MJpciDABXMchrZphh3vMcqu8hkNf/Mi+Gk6btOimVg1XMxLXh87j6FAvRm+KmwD1A9fpu3qRQYcbQe4egj23og==
+  /mongodb/3.1.10:
+    dependencies:
+      mongodb-core: 3.1.9
+      safe-buffer: 5.1.2
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-Uml42GeFxhTGQVml1XQ4cD0o/rp7J2ROy0fdYUcVitoE7vFqEhKH4TYVqRDpQr/bXtCJVxJdNQC1ntRxNREkPQ==
+  /mongoose-legacy-pluralize/1.0.2:
+    dev: false
+    peerDependencies:
+      mongoose: '*'
+    resolution:
+      integrity: sha512-Yo/7qQU4/EyIS8YDFSeenIvXxZN+ld7YdV9LqFVQJzTLye8unujAWPZ4NWKfFA+RNjh+wvTWKY9Z3E5XM6ZZiQ==
+  /mongoose/5.3.14:
+    dependencies:
+      async: 2.6.1
+      bson: 1.1.0
+      kareem: 2.3.0
+      lodash.get: 4.4.2
+      mongodb: 3.1.10
+      mongodb-core: 3.1.9
+      mongoose-legacy-pluralize: 1.0.2
+      mpath: 0.5.1
+      mquery: 3.2.0
+      ms: 2.0.0
+      regexp-clone: 0.0.1
+      safe-buffer: 5.1.2
+      sliced: 1.0.1
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    resolution:
+      integrity: sha512-Vt7uC0+/SuPb+x6IwbtXl4tkUER1xU9INlfrDK1RdfsvvEMfG3FJUGNPVGeTWQaj8xqMBtZKIdUNt58rIAsCYg==
+  /mpath/0.5.1:
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    resolution:
+      integrity: sha512-H8OVQ+QEz82sch4wbODFOz+3YQ61FYz/z3eJ5pIdbMEaUzDqA268Wd+Vt4Paw9TJfvDgVKaayC0gBzMIw2jhsg==
+  /mquery/3.2.0:
+    dependencies:
+      bluebird: 3.5.1
+      debug: 3.1.0
+      regexp-clone: 0.0.1
+      safe-buffer: 5.1.2
+      sliced: 1.0.1
+    dev: false
+    engines:
+      node: '>=4.0.0'
+    resolution:
+      integrity: sha512-qPJcdK/yqcbQiKoemAt62Y0BAc0fTEKo1IThodBD+O5meQRJT/2HSe5QpBNwaa4CjskoGrYWsEyjkqgiE0qjhg==
   /ms/2.0.0:
     dev: false
     resolution:
@@ -1189,6 +1292,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==
+  /regexp-clone/0.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-p8LgmJH9vzj7sQ03b7cwA+aKxYk=
   /registry-auth-token/3.3.2:
     dependencies:
       rc: 1.2.8
@@ -1220,6 +1327,19 @@ packages:
       node: '>=0.10'
     resolution:
       integrity: sha1-jcrkcOHIirwtYA//Sndihtp15jc=
+  /require_optional/1.0.1:
+    dependencies:
+      resolve-from: 2.0.0
+      semver: 5.6.0
+    dev: false
+    resolution:
+      integrity: sha512-qhM/y57enGWHAe3v/NcwML6a3/vfESLe/sGM2dII+gEO0BpKRUkWZow/tyloNqJyN6kXSl3RyyM8Ll5D/sJP8g==
+  /resolve-from/2.0.0:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-lICrIOlP+h2egKgEx+oUdhGWa1c=
   /resolve-url/0.2.1:
     dev: false
     resolution:
@@ -1240,6 +1360,15 @@ packages:
     dev: false
     resolution:
       integrity: sha1-QKNmnzsHfR6UPURinhV91IAjvy4=
+  /saslprep/1.0.2:
+    dependencies:
+      sparse-bitfield: 3.0.3
+    dev: false
+    engines:
+      node: '>=6'
+    optional: true
+    resolution:
+      integrity: sha512-4cDsYuAjXssUSjxHKRe4DTZC0agDwsCqcMqtJAQPzC74nJ7LfAJflAtC1Zed5hMzEQKj82d3tuzqdGNRsLJ4Gw==
   /semver-diff/2.1.0:
     dependencies:
       semver: 5.6.0
@@ -1293,6 +1422,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
+  /sliced/1.0.1:
+    dev: false
+    resolution:
+      integrity: sha1-CzpmK10Ewxd7GSa+qCsD+Dei70E=
   /snapdragon-node/2.1.1:
     dependencies:
       define-property: 1.0.0
@@ -1346,6 +1479,13 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
+  /sparse-bitfield/3.0.3:
+    dependencies:
+      memory-pager: 1.1.0
+    dev: false
+    optional: true
+    resolution:
+      integrity: sha1-/0rm5oZWBWuks+eSqzM004JzyhE=
   /split-string/3.1.0:
     dependencies:
       extend-shallow: 3.0.2
@@ -1596,6 +1736,7 @@ specifiers:
   calendar: ^0.1.0
   clipboardy: ^1.2.3
   dotenv: ^6.1.0
+  mongoose: ^5.3.14
   nedb-promises: ^3.0.2
   nodemon: ^1.18.6
   telegram-node-bot: ^4.0.5
