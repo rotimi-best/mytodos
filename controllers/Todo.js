@@ -1,13 +1,12 @@
 const { TelegramBaseController } = require("telegram-node-bot");
-const clipboardy = require('clipboardy');
+const clipboardy = require("clipboardy");
 const DatePicker = require("../controllers/DatePicker");
-const { date, emojis, sendToAdmin } = require("../modules");
+const { date, emojis, sendToAdmin, capitalize } = require("../modules");
 const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
 
 class TodoController extends TelegramBaseController {
-
   /**
    * @param {Scope} $
    */
@@ -17,7 +16,8 @@ class TodoController extends TelegramBaseController {
 
     const form = {
       task: {
-        q: "Send me your task. To add more than one please use this format:\n\ntask 1,, task 2,, task 3",
+        q:
+          "Send me your task. To add more than one please use this format:\n\ntask 1,, task 2,, task 3",
         error: "Sorry, thats not a valid task, try again",
         validator: (message, callback) => {
           if (message.text) {
@@ -49,8 +49,9 @@ class TodoController extends TelegramBaseController {
 
       for (let i = 0; i < tasks.length; i++) {
         if (tasks[i].length) {
+          const newTask = capitalize(tasks[i]);
           const todo = {
-            task: tasks[i],
+            task: newTask,
             date: date(),
             telegramId,
             done,
@@ -58,7 +59,7 @@ class TodoController extends TelegramBaseController {
           };
 
           taskNumber += 1;
-          
+
           await addTodo(todo);
         }
       }
@@ -66,7 +67,7 @@ class TodoController extends TelegramBaseController {
       await this.suggestNextStepToUser($, `Great, I've added it.`);
     });
 
-    sendToAdmin('Someone just created a new todo');
+    sendToAdmin("Someone just created a new todo");
   }
 
   /**
@@ -122,7 +123,7 @@ class TodoController extends TelegramBaseController {
       buttons.push({
         text: `${i} ✅`,
         callback: async query => {
-          await updateTodo({ _id: _id }, { done: true });
+          await updateTodo({ _id }, { done: true });
 
           bot.api.answerCallbackQuery(query.id, {
             text: `You've completed task ${taskNumber}, Congratulations! 👏`
@@ -140,7 +141,7 @@ class TodoController extends TelegramBaseController {
       menu: buttons
     });
 
-    sendToAdmin('Someone just got all todo');
+    sendToAdmin("Someone just got all todo");
   }
 
   /**
@@ -204,7 +205,7 @@ class TodoController extends TelegramBaseController {
       menu: buttons
     });
 
-    sendToAdmin('Someone just checked done todos');
+    sendToAdmin("Someone just checked done todos");
   }
 
   /**
@@ -238,7 +239,8 @@ class TodoController extends TelegramBaseController {
       const { task } = result;
       const todo = await updateTodo(
         { telegramId, taskNumber, done: false },
-        { task });
+        { task }
+      );
 
       let customText = "";
       if (!todo) customText = `Sorry, edit wasn't successful`;
@@ -249,7 +251,7 @@ class TodoController extends TelegramBaseController {
       return;
     });
 
-    sendToAdmin('Someone just editted todos');
+    sendToAdmin("Someone just editted todos");
   }
 
   /**
@@ -269,13 +271,15 @@ class TodoController extends TelegramBaseController {
     if (!todos.length) {
       customText = `Sorry, I could't copy that task ${emojis.sad}`;
     } else {
-      customText = `${emojis.smile}I copied that for you! Now you can paste it anywhere.`;
+      customText = `${
+        emojis.smile
+      }I copied that for you! Now you can paste it anywhere.`;
       clipboardy.writeSync(todos[0].task);
     }
 
     await this.suggestNextStepToUser($, customText);
 
-    sendToAdmin('Someone just copied a todo');
+    sendToAdmin("Someone just copied a todo");
   }
 
   async suggestNextStepToUser($, customText) {
