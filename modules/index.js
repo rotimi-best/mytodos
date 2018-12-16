@@ -130,11 +130,9 @@ const reduceDay = (value, date) => {
  * Send message to admin
  * @param {String} msg Message to send to admin
  */
-const sendToAdmin = msg => {
-  bot.api.sendMessage(process.env.ADMIN, "*BOT-FEEDBACK: *" + msg, {
-    parse_mode: "Markdown"
-  });
-};
+const sendToAdmin = (msg) => {
+  bot.api.sendMessage(process.env.ADMIN, '*BOT-FEEDBACK: *'+msg, {parse_mode: 'Markdown'});
+}
 
 const emojis = {
   smile: "🙂",
@@ -157,14 +155,11 @@ const emojis = {
   delete: "🗑"
 };
 
-const capitalize = str => str[0].toUpperCase() + str.substring(1);
-
 module.exports = {
   date,
   time,
   emojis,
   reduceDay,
   increaseDay,
-  sendToAdmin,
-  capitalize
+  sendToAdmin
 };
