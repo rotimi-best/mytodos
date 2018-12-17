@@ -1,6 +1,5 @@
 const { TelegramBaseController } = require("telegram-node-bot");
-const clipboardy = require('clipboardy');
-const DatePicker = require("../controllers/DatePicker");
+const copy = require('copy-to-clipboard');
 const { date, emojis, sendToAdmin } = require("../modules");
 const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
@@ -270,7 +269,7 @@ class TodoController extends TelegramBaseController {
       customText = `Sorry, I could't copy that task ${emojis.sad}`;
     } else {
       customText = `${emojis.smile}I copied that for you! Now you can paste it anywhere.`;
-      clipboardy.writeSync(todos[0].task);
+      copy(todos[0].task);
     }
 
     await this.suggestNextStepToUser($, customText);
