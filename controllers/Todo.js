@@ -1,6 +1,6 @@
 const { TelegramBaseController } = require("telegram-node-bot");
 const copy = require('copy-to-clipboard');
-const { date, emojis, sendToAdmin } = require("../modules");
+const { date, emojis, sendToAdmin, capitalize } = require("../modules");
 const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
