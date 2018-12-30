@@ -4,6 +4,19 @@ const bot = Bot.get();
 require("dotenv").config();
 
 /**
+ * Get the length of a String or Array
+ * @param {Any} x Value to get the length of
+ */
+const len = x => x.length;
+
+/**
+ * Generate a random number from a range of 2 numbers
+ * @param {Number} min The minimum number for the random number
+ * @param {Number} max The maximum number for the random number
+ */
+const genRandNum = (min, max) => Math.floor(Math.random() * (1 + max - min)) + min;
+
+/**
  * @param {Object} params This should be an Object with fields you need in order to manipulate the date.
  * Currently there are 2 fields used which is: `monthInText` and `dayInText`
  * `monthInText`: if true then the name of the month will be returned instead of its index
@@ -86,9 +99,11 @@ const increaseDay = (value, date) => {
   date === undefined
     ? today.setDate(today.getDate() + value)
     : today.setDate(parseInt(date.replace(/\d+(-)\d+(-)(0)/g, "")) + value);
+
   const increasedDay = today.getDate();
   const increasedMonth = today.getMonth() + 1;
   const increasedYear = today.getFullYear();
+
   const future = `${increasedYear}-${
     increasedMonth < 10 ? "0" + increasedMonth : increasedMonth
   }-${increasedDay < 10 ? "0" + increasedDay : increasedDay}`;
@@ -97,6 +112,7 @@ const increaseDay = (value, date) => {
   date === undefined
     ? today.setDate(today.getDate() - value)
     : today.setDate(parseInt(date.replace(/\d+(-)\d+(-)(0)/g, "")) - value);
+
   return future;
 };
 
@@ -160,11 +176,13 @@ const emojis = {
 const capitalize = str => str[0].toUpperCase() + str.substring(1);
 
 module.exports = {
+  len,
   date,
   time,
   emojis,
   reduceDay,
   increaseDay,
   sendToAdmin,
-  capitalize
+  capitalize,
+  genRandNum
 };
