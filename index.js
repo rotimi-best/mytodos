@@ -5,9 +5,12 @@ require('dotenv').config();
 const Todo = require("./controllers/Todo");
 const DatePicker = require("./controllers/DatePicker");
 const Start = require("./controllers/Start");
-const CallbackQueryController = require("./callbackQueries");
+const CallbackQuery = require("./callbackQueries");
+const InlineMode = require("./inlineMode");
 
-bot.router.callbackQuery(new CallbackQueryController());
+bot.router.callbackQuery(new CallbackQuery());
+
+bot.router.inlineQuery(new InlineMode())
 
 bot.router
   .when(new TextCommand("/start", "startCommand"), new Start())
