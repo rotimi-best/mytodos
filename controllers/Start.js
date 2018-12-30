@@ -6,6 +6,7 @@ const todos = new TodoController();
 const {
   sendToAdmin, emojis: { wave, thumbsUp, thumbsDown, ok }
 } = require("../modules");
+const { COMMANDS } = require('../helpers/constants');
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
 
@@ -88,7 +89,7 @@ class StartController extends TelegramBaseController {
         sendToAdmin(`User choose Yes ${userName}`);
 
         $.sendMessage(
-          `Okay, Thanks ${userName} ${ok}.\n\nI can help you organize your tasks by allowing you create a todolist.\n\nYou can control me with these commands:\n\n/newtodo - add a task to your todolist\n\n/mytodos - all your pending tasks\n/donetodos - all done todos\n\n/categories - manage todos in categories\n\n/help - ask for help\n/feedback - give me your feedback.`,
+          `Okay, Thanks ${userName} ${ok}.${COMMANDS}`,
           {
             reply_markup: JSON.stringify({
               remove_keyboard: true
@@ -105,7 +106,7 @@ class StartController extends TelegramBaseController {
           sendToAdmin(`User choose No ${userName}`);
 
           $.sendMessage(
-            `Okay, Thanks ${userName} ${ok}.\n\nI can help you organize your tasks by allowing you create a todolist.\n\nYou can control me with these commands:\n\n/newtodo - add a task to your todolist\n\n/mytodos - all your pending tasks\n/donetodos - all done todos\n\n/categories - manage todos in categories\n\n/help - ask for help\n/feedback - give me your feedback.`,
+            `Okay, Thanks ${userName} ${ok}.${COMMANDS}`,
             {
               reply_markup: JSON.stringify({
                 remove_keyboard: true

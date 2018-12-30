@@ -7,6 +7,7 @@ const DatePicker = require("./controllers/DatePicker");
 const Start = require("./controllers/Start");
 const CallbackQuery = require("./callbackQueries");
 const InlineMode = require("./inlineMode");
+const OtherwiseController = require("./controllers/otherwiseController");
 
 bot.router.callbackQuery(new CallbackQuery());
 
@@ -22,8 +23,8 @@ bot.router
     new DatePicker("Finish", "Task deadline is")
   )
   .when(new RegexpCommand(/\/edittodo/, "editTodosCommand"), new Todo())
-  .when(new RegexpCommand(/\/copytodo/, "copyTodosCommand"), new Todo());
-
+  .when(new RegexpCommand(/\/copytodo/, "copyTodosCommand"), new Todo())
+  .otherwise(new OtherwiseController());
 
 process.on('uncaughtException', async (error) => {
   const errorMsg = `Best an error occured, please look at it: ${error}`;
