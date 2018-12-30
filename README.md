@@ -1,6 +1,8 @@
 # mytodos
 A Nodejs telegram bot for creating and managing todos, using ![telegram-node-bot](https://github.com/Naltox/telegram-node-bot).
 
+You can find this bot on telegram by searching for `@my_todos_bot`
+
 # Installation
 - `git clone https://github.com/Rotimi-Best/mytodos.git`
 - `npm install `
