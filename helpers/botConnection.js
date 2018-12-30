@@ -11,8 +11,7 @@ module.exports = {
               webAdmin: {
                   port: 8081,
                   host: '127.0.0.1'
-              }
-            });
+              }});
             return bot;
         } else {
             return bot;

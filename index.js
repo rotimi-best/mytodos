@@ -20,3 +20,14 @@ bot.router
   )
   .when(new RegexpCommand(/\/edittodo/, "editTodosCommand"), new Todo())
   .when(new RegexpCommand(/\/copytodo/, "copyTodosCommand"), new Todo());
+
+
+process.on('uncaughtException', async (error) => {
+  const errorMsg = `Best an error occured, please look at it: ${error}`;
+
+  console.error(errorMsg);
+
+  bot.onMaster(() => {
+    bot.sendMessage(process.env.ADMIN, errorMsg);
+  });
+});
