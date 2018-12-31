@@ -64,16 +64,16 @@ class CallbackQuery extends TelegramBaseCallbackQueryController {
             log(todoToAdd);
     
             await todoController.splitAndSaveTodoHandler(id, todoToAdd);
+            
+            
+            bot.api.editMessageText(`Great ${firstName} ${thumbsUp}, I have added _${todoToAdd}_ to your todo list.\n[View in bot](${BOT_LINK})`,
+            {
+              inline_message_id: inlineMsgId,
+              parse_mode: "Markdown"
+            });
           }
         }// end if
       }//end if
-    });
-
-
-    bot.api.editMessageText(`Great ${firstName} ${thumbsUp}, I have added it to your todo list.\n[Go to bot](${BOT_LINK})`,
-    {
-      inline_message_id: inlineMsgId,
-      parse_mode: "Markdown"
     });
   }
 
