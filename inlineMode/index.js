@@ -5,6 +5,7 @@ const { genRandNum,capitalize, emojis: { wave, oneEye,thumbsUp, thumbsDown, ok }
 const bot = require("../helpers/botConnection").get();
 
 class InlineMode extends TelegramBaseInlineQueryController {
+    
     /**
      * Reply inline queries
      * @param {InlineScoper} $ 

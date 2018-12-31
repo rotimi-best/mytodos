@@ -78,7 +78,7 @@ class TodoController extends TelegramBaseController {
    * List all uncompleted todos
    * @param {Scope} $
    */
-  async allTodosHandler($) {
+  async allTodosHandler($, params) {
     const scope = $;
     const telegramId = $.message.chat.id;
     const allTodos = await findTodo({ telegramId, done: false });
@@ -114,6 +114,7 @@ class TodoController extends TelegramBaseController {
 
       return;
     }
+
     const buttons = [];
 
     let todos = `📝 *All Todos*\n\n`;
@@ -134,17 +135,24 @@ class TodoController extends TelegramBaseController {
             text: `You've completed task ${taskNumber}, Congratulations! 👏`
           });
 
-          await this.allTodosHandler(scope);
+          await this.allTodosHandler(scope, {deletePrevMsg: true});
         }
       });
     }
 
-    $.runInlineMenu({
-      layout: 4, //some layouting here
-      method: "sendMessage", //here you must pass the method name
-      params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
-      menu: buttons
-    });
+    // if (params) {
+    //   const chat_id = $.message.chat.id;
+    //   const message_id = $.message.message_id;
+    //   $.editMessageText(chat_id, message_id);
+    // } else {
+
+      $.runInlineMenu({
+        layout: 4, //some layouting here
+        method: "sendMessage", //here you must pass the method name
+        params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
+        menu: buttons
+      });
+    // }
 
     sendToAdmin("Someone just got all todo");
   }
