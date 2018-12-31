@@ -1,20 +1,7 @@
-{id: 380473669, msg: Do your thing}
-
-{id: 380473669, msg: Do something new toda}
-
-{id: 380473669, msg: Do something new today}
-
-{id: 380473669, msg: Pra}
-
-{id: 380473669, msg: Pray for}
-
-{id: 380473669, msg: Pray for f}
-
-{id: 380473669, msg: Pray for Francis}
-
-{id: 380473669, msg: Brush}
-
-{id: 380473669, msg: Brush my teet}
-
-{id: 380473669, msg: Brush my teeth}
-
+{"id":38047366912,"msg":"Wr"}
+{"id":38047366912,"msg":"Write"}
+{"id":38047366912,"msg":"Write the vis"}
+{"id":38047366912,"msg":"Write the vision"}
+{"id":380473669,"msg":"Write the vision mae"}
+{"id":380473669,"msg":"Write the visiona"}
+{"id":380473669,"msg":"Write the vision and make it clear"}

@@ -18,9 +18,9 @@ class InlineMode extends TelegramBaseInlineQueryController {
             const msg = capitalize(query);
 
             const result = {
-                "type": "article",
-                "id": genRandNum(1, 50),
-                "title": "Add Todo",
+                type: "article",
+                id: genRandNum(1, 50),
+                title: "Add Todo",
                 input_message_content: {
                     message_text: `*Great ${userName}* ${oneEye}, Here is your new todo\n\n${msg}.\n\nShould I add it to your list?`,
                     "parse_mode": "Markdown",
@@ -38,13 +38,13 @@ class InlineMode extends TelegramBaseInlineQueryController {
                 thumb_url: "https://raw.githubusercontent.com/Rotimi-Best/mytodos/master/media/dp_114.jpg"
             };
     
-            const answeredInineQuery = await bot.api.answerInlineQuery(id, [result]);
+            const inineQueryAnswered = await bot.api.answerInlineQuery(id, [result]);
 
-            if (answeredInineQuery) {
+            if (inineQueryAnswered) {
                 const path = `${process.cwd()}/tmp/inlinemode.txt`;
-                const data = `{id: ${userId}, msg: ${msg}}\n\n`;
+                const data = JSON.stringify({"id": userId, "msg": msg}) + "\n";
 
-                fs.appendFileSync(path, data); 
+                fs.appendFileSync(path, data);
             }
         }
 

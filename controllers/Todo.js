@@ -33,40 +33,45 @@ class TodoController extends TelegramBaseController {
 
     $.runForm(form, async result => {
       const { task } = result;
-      const done = false;
-      const allTodos = await findTodo({ telegramId, done });
 
-      let taskNumber = 1;
-      let tasks = task.split(",,");
-
-      if (allTodos.length) {
-        let max = allTodos.reduce((prev, current) =>
-          prev.taskNumber > current.taskNumber ? prev : current
-        );
-        taskNumber = max.taskNumber + 1;
-      }
-
-      for (let i = 0; i < tasks.length; i++) {
-        if (tasks[i].length) {
-          const newTask = capitalize(tasks[i]);
-          const todo = {
-            task: newTask,
-            date: date(),
-            telegramId,
-            done,
-            taskNumber
-          };
-
-          taskNumber += 1;
-
-          await addTodo(todo);
-        }
-      }
+      await this.splitAndSaveTodoHandler(telegramId, task);
 
       await this.suggestNextStepToUser($, `Great, I've added it.`);
     });
 
     sendToAdmin("Someone just created a new todo");
+  }
+
+  async splitAndSaveTodoHandler(telegramId, task) {
+    const done = false;
+    const allTodos = await findTodo({ telegramId, done });
+
+    let taskNumber = 1;
+    const tasks = task.split(",,");
+
+    if (allTodos.length) {
+      let max = allTodos.reduce((prev, current) =>
+        prev.taskNumber > current.taskNumber ? prev : current
+      );
+      taskNumber = max.taskNumber + 1;
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+      if (tasks[i].length) {
+        const newTask = capitalize(tasks[i]);
+        const todo = {
+          task: newTask,
+          date: date(),
+          telegramId,
+          done,
+          taskNumber
+        };
+
+        taskNumber += 1;
+
+        await addTodo(todo);
+      }
+    }
   }
 
   /**
@@ -91,12 +96,13 @@ class TodoController extends TelegramBaseController {
 
       $.waitForRequest.then(async $ => {
         if ($.message.text === `Yes`) {
-          $.sendMessage(`Okay`, {
-            reply_markup: JSON.stringify({
-              remove_keyboard: true
-            })
-          });
-          await this.newTodoHandler($);
+            $.sendMessage(`Okay`, {
+              reply_markup: JSON.stringify({
+                remove_keyboard: true
+              })
+            });
+            
+            await this.newTodoHandler($);
         } else if ($.message.text === `No`) {
           $.sendMessage(`Okay`, {
             reply_markup: JSON.stringify({
@@ -315,7 +321,8 @@ class TodoController extends TelegramBaseController {
       allTodosCommand: "allTodosHandler",
       editTodosCommand: "editTodosHandler",
       copyTodosCommand: "copyTodosHandler",
-      doneTodosCommand: "doneTodosHandler"
+      doneTodosCommand: "doneTodosHandler",
+      splitAndSaveTodoCommand: "splitAndSaveTodoHandler"
     };
   }
 }

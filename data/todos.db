@@ -1,5 +1,6 @@
 {"task":"Create a script that after 3 days the script checks for all the inbox of the previous 3 days and save if it wasn't saved","date":"2018-11-28","telegramId":380473669,"done":false,"taskNumber":13,"_id":"3y6jEau61OMOoNJj","createdAt":{"$$date":1543420681502},"updatedAt":{"$$date":1543420681502}}
 {"task":"Give review to yesterdays talk on nodejs #work","date":"2018-11-30","telegramId":380473669,"done":false,"taskNumber":18,"_id":"7YiyHrGdiLQDSuxm","createdAt":{"$$date":1543576815386},"updatedAt":{"$$date":1543576815386}}
+{"task":"Brush my teeth","date":"2018-12-31","telegramId":380473669,"done":false,"taskNumber":28,"_id":"9YJv3xXQ3Z5EeoKE","createdAt":{"$$date":1546221369376},"updatedAt":{"$$date":1546221369376}}
 {"task":"Create a universal script that checks if page is logged out then log back in, stop every other script, sign back in, save the cookies and then continue each script","date":"2018-11-28","telegramId":380473669,"done":false,"taskNumber":11,"_id":"CRzpL8sN58XfmSfp","createdAt":{"$$date":1543419610544},"updatedAt":{"$$date":1543419610544}}
 {"task":"Add the otherwise controller to bot #todobot","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":8,"_id":"CucUdTNCwO6ApHLR","createdAt":{"$$date":1543273193076},"updatedAt":{"$$date":1543273193076}}
 {"task":" Get inbox of the last 3 days #work","date":"2018-12-18","telegramId":380473669,"done":true,"taskNumber":23,"_id":"DjLGqXECBJKyMiYd","createdAt":{"$$date":1545153714025},"updatedAt":{"$$date":1546202619855}}
@@ -9,9 +10,21 @@
 {"task":" Rewrite how mobile leads are gotten #work","date":"2018-12-18","telegramId":380473669,"done":false,"taskNumber":27,"_id":"OqpJVn6eDqUzzfGx","createdAt":{"$$date":1545153714029},"updatedAt":{"$$date":1545153714029}}
 {"task":"Functionality to prioritize tasks","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":7,"_id":"PUPw4UIln2nhGrRU","createdAt":{"$$date":1543233640890},"updatedAt":{"$$date":1543233640890}}
 {"task":" cron job for sending connects  #work","date":"2018-12-18","telegramId":380473669,"done":false,"taskNumber":25,"_id":"QVpHjmwgWPrABpP4","createdAt":{"$$date":1545153714028},"updatedAt":{"$$date":1545153714028}}
+{"task":" comb my hair","date":"2018-12-31","telegramId":380473669,"done":false,"taskNumber":29,"_id":"RjmTBFC1fSeJM27U","createdAt":{"$$date":1546221369378},"updatedAt":{"$$date":1546221369378}}
 {"task":"Add error handler to bot #todobot","date":"2018-11-30","telegramId":380473669,"done":true,"taskNumber":20,"_id":"TzxIMDPwxp0ngYS3","createdAt":{"$$date":1543580101534},"updatedAt":{"$$date":1546202596979}}
+{"task":"Write the vision and make it clear","date":"2018-12-31","telegramId":380473669,"done":false,"taskNumber":30,"_id":"kPCrSJrqfCl6ZBrb","createdAt":{"$$date":1546221655593},"updatedAt":{"$$date":1546221655593}}
 {"task":" cron job for sending messages to mleads #work","date":"2018-12-18","telegramId":380473669,"done":true,"taskNumber":24,"_id":"lJLBdabMPuZYg3Hh","createdAt":{"$$date":1545153714026},"updatedAt":{"$$date":1546202603677}}
 {"task":" send connects to all leads in Lenas db #work","date":"2018-11-26","telegramId":380473669,"done":false,"taskNumber":2,"_id":"o2Z1ueOpnV6YjXXX","createdAt":{"$$date":1543219512232},"updatedAt":{"$$date":1543219512232}}
 {"task":"Зарегать эверест","date":"2018-11-26","telegramId":284825945,"done":true,"taskNumber":1,"_id":"oRVDGJEo1uxFaxnf","createdAt":{"$$date":1543235089972},"updatedAt":{"$$date":1543235271969}}
 {"task":"Create another functionality to check for accepted connects #work","date":"2018-12-18","telegramId":380473669,"done":false,"taskNumber":22,"_id":"u3Oji1ayn452nbJC","createdAt":{"$$date":1545153714024},"updatedAt":{"$$date":1545153714024}}
 {"task":" Calculate the timezones of mleads dynamically #work","date":"2018-12-18","telegramId":380473669,"done":true,"taskNumber":26,"_id":"xxqNNQ8H4HE17UDv","createdAt":{"$$date":1545153714029},"updatedAt":{"$$date":1546202568777}}
+{"task":"Write the vision and make it clear","date":"2018-12-31","telegramId":380473669,"done":true,"taskNumber":30,"_id":"kPCrSJrqfCl6ZBrb","createdAt":{"$$date":1546221655593},"updatedAt":{"$$date":1546222017690}}
+{"task":" comb my hair","date":"2018-12-31","telegramId":380473669,"done":true,"taskNumber":29,"_id":"RjmTBFC1fSeJM27U","createdAt":{"$$date":1546221369378},"updatedAt":{"$$date":1546222021305}}
+{"task":"Brush my teeth","date":"2018-12-31","telegramId":380473669,"done":true,"taskNumber":28,"_id":"9YJv3xXQ3Z5EeoKE","createdAt":{"$$date":1546221369376},"updatedAt":{"$$date":1546222022729}}
+{"$$deleted":true,"_id":"TzxIMDPwxp0ngYS3"}
+{"$$deleted":true,"_id":"DjLGqXECBJKyMiYd"}
+{"$$deleted":true,"_id":"lJLBdabMPuZYg3Hh"}
+{"$$deleted":true,"_id":"xxqNNQ8H4HE17UDv"}
+{"$$deleted":true,"_id":"9YJv3xXQ3Z5EeoKE"}
+{"$$deleted":true,"_id":"RjmTBFC1fSeJM27U"}
+{"$$deleted":true,"_id":"kPCrSJrqfCl6ZBrb"}
