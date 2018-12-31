@@ -1,5 +1,7 @@
+const { log } = console;
+const fs = require('fs');
 const { TelegramBaseInlineQueryController } = require("telegram-node-bot");
-const { genRandNum,capitalize, len } = require('../modules')
+const { genRandNum,capitalize, emojis: { wave, oneEye,thumbsUp, thumbsDown, ok } } = require('../modules')
 const bot = require("../helpers/botConnection").get();
 
 class InlineMode extends TelegramBaseInlineQueryController {
@@ -20,15 +22,30 @@ class InlineMode extends TelegramBaseInlineQueryController {
                 "id": genRandNum(1, 50),
                 "title": "Add Todo",
                 input_message_content: {
-                    message_text: `*Great ${userName}*, I added this task to your todos\n\n${msg}`,
+                    message_text: `*Great ${userName}* ${oneEye}, Here is your new todo\n\n${msg}.\n\nShould I add it to your list?`,
                     "parse_mode": "Markdown",
                 },
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                          { text: `Yes ${thumbsUp}`, callback_data: `yes_inline_mode` },
+                          { text: `No ${thumbsDown}`, callback_data: `no_inline_mode` }
+                        ]
+                    ],
+                    one_time_keyboard: true
+                },
                 description: msg,
-                thumb_url: "https://plus.google.com/u/0/photos/109776334582581798978/albums/profile/6605467866492593218?iso=false"
+                thumb_url: "https://raw.githubusercontent.com/Rotimi-Best/mytodos/master/media/dp_114.jpg"
             };
     
-            const data = await bot.api.answerInlineQuery(id, [result]);
-            console.log(data)
+            const answeredInineQuery = await bot.api.answerInlineQuery(id, [result]);
+
+            if (answeredInineQuery) {
+                const path = `${process.cwd()}/tmp/inlinemode.txt`;
+                const data = `{id: ${userId}, msg: ${msg}}\n\n`;
+
+                fs.appendFileSync(path, data); 
+            }
         }
 
     }
