@@ -1,7 +1,0 @@
-{"id":38047366912,"msg":"Wr"}
-{"id":38047366912,"msg":"Write"}
-{"id":38047366912,"msg":"Write the vis"}
-{"id":38047366912,"msg":"Write the vision"}
-{"id":380473669,"msg":"Write the vision mae"}
-{"id":380473669,"msg":"Write the visiona"}
-{"id":380473669,"msg":"Write the vision and make it clear"}

@@ -3,13 +3,14 @@ const fs = require('fs');
 const { TelegramBaseCallbackQueryController } = require("telegram-node-bot");
 const bot = require("../helpers/botConnection").get();
 const { sendToAdmin, emojis: { thumbsUp }, len } = require('../modules');
+const { BOT_LINK } = require('../helpers/constants');
 const TodoController = require("../controllers/Todo");
 const todoController = new TodoController;
 
 class CallbackQuery extends TelegramBaseCallbackQueryController {
 
   handle(query) {
-    const { id, data, from, inlineMessageId} = query;
+    const { id, data, from, inlineMessageId } = query;
     let text = `Use the commands to use this functionality.`;
 
     switch (data) {
@@ -38,7 +39,7 @@ class CallbackQuery extends TelegramBaseCallbackQueryController {
         sendToAdmin(`Error occured when reading inline file ${err}`);
         console.log(err)
       }
-      
+
       const todos = data ? data.split('\n') : {};
       
       if (len(todos) && Array.isArray(todos)) {
@@ -59,24 +60,29 @@ class CallbackQuery extends TelegramBaseCallbackQueryController {
             }
           }// end for
 
-          log(todoToAdd);
-          await todoController.splitAndSaveTodoHandler(id, todoToAdd);
+          if (len(todoToAdd)) {
+            log(todoToAdd);
+    
+            await todoController.splitAndSaveTodoHandler(id, todoToAdd);
+          }
         }// end if
       }//end if
+    });
 
-    })
-    
-    // bot.api.editMessageText(`Great ${firstName} ${thumbsUp}, I have added it to your todo list`,
-    // {
-    //   inline_message_id: inlineMsgId
-    // });
+
+    bot.api.editMessageText(`Great ${firstName} ${thumbsUp}, I have added it to your todo list.\n[Go to bot](${BOT_LINK})`,
+    {
+      inline_message_id: inlineMsgId,
+      parse_mode: "Markdown"
+    });
   }
 
   dontSaveTodoFromInlineQuery(inlineMsgId, {firstName}) {
     bot.api.editMessageText(`Okay ${firstName} ${thumbsUp}, I didn't add it to your todo list`,
-    {
-      inline_message_id: inlineMsgId
-    });
+      {
+        inline_message_id: inlineMsgId
+      }
+    );
   }
 }
 
