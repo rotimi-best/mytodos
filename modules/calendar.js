@@ -2,7 +2,7 @@
 const CalendarModule = require('calendar');
 const calendar = new CalendarModule.Calendar();
 
-module.exports = (month) => {
+module.exports = month => {
     const today = new Date();
     let monthNumber = !isNaN(month) ? month: today.getMonth();
     let year = today.getFullYear();
@@ -19,7 +19,3 @@ module.exports = (month) => {
     
     return returnObj;
 }
-
-
-
-
