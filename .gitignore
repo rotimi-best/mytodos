@@ -61,4 +61,4 @@ typings/
 .next
 
 # Todos database
-data/
+.data/
