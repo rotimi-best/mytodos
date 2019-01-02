@@ -34,7 +34,7 @@ class CallbackQuery extends TelegramBaseCallbackQueryController {
 
   saveTodoFromInlineQuery(inlineMsgId, {id, firstName}) {
     //Read file to get all inline todos
-    fs.readFile(`${process.cwd()}/tmp/inlinemode.txt`, 'utf8', async (err, data) => {
+    fs.readFile(`${process.cwd()}/.data/inlinemode.txt`, 'utf8', async (err, data) => {
       if (err) {
         sendToAdmin(`Error occured when reading inline file ${err}`);
         console.log(err)
