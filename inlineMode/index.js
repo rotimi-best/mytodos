@@ -42,13 +42,12 @@ class InlineMode extends TelegramBaseInlineQueryController {
             const inineQueryAnswered = await bot.api.answerInlineQuery(id, [result]);
 
             if (inineQueryAnswered) {
-                const path = `${process.cwd()}/tmp/inlinemode.txt`;
+                const pathToFileForSavingInlineData = `${process.cwd()}/.data/inlinemode.txt`;
                 const data = JSON.stringify({"id": userId, "msg": msg}) + "\n";
 
-                fs.appendFileSync(path, data);
+                fs.appendFileSync(pathToFileForSavingInlineData, data);
             }
         }
-
     }
 }
 
