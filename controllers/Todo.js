@@ -81,6 +81,7 @@ class TodoController extends TelegramBaseController {
   async allTodosHandler($, params) {
     const scope = $;
     const telegramId = $.message.chat.id;
+    const userName = $.message.chat.firstName ? $.message.chat.firstName : $.message.chat.lastName;
     const allTodos = await findTodo({ telegramId, done: false });
 
     if (!allTodos.length) {
@@ -154,7 +155,7 @@ class TodoController extends TelegramBaseController {
       });
     // }
 
-    sendToAdmin("Someone just got all todo");
+    sendToAdmin(`${userName} just got all todo`);
   }
 
   /**
@@ -166,6 +167,7 @@ class TodoController extends TelegramBaseController {
     const scope = $;
     const buttons = [];
     const telegramId = $.message.chat.id;
+    const userName = $.message.chat.firstName ? $.message.chat.firstName : $.message.chat.lastName;
     const doneTodos = await findTodo({ telegramId, done: true });
 
     if (!doneTodos.length) {
@@ -218,7 +220,7 @@ class TodoController extends TelegramBaseController {
       menu: buttons
     });
 
-    sendToAdmin("Someone just checked done todos");
+    sendToAdmin(`${userName}  just checked done todos`);
   }
 
   /**
@@ -229,6 +231,7 @@ class TodoController extends TelegramBaseController {
   async editTodosHandler($) {
     const message = $.message.text;
     const telegramId = $.message.chat.id;
+    const userName = $.message.chat.firstName ? $.message.chat.firstName : $.message.chat.lastName;
     let taskNumber = message.match(/\/edittodo([0-9]+)/)[1];
     taskNumber = Number(taskNumber);
 
@@ -264,7 +267,7 @@ class TodoController extends TelegramBaseController {
       return;
     });
 
-    sendToAdmin("Someone just editted todos");
+    sendToAdmin(`${userName} just editted todos`);
   }
 
   /**
