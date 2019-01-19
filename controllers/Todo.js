@@ -1,5 +1,5 @@
 const { TelegramBaseController } = require("telegram-node-bot");
-const clipboardy = require('clipboardy');
+const clipboardy = require("clipboardy");
 const { date, emojis, sendToAdmin, capitalize } = require("../modules");
 const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
@@ -81,7 +81,7 @@ class TodoController extends TelegramBaseController {
   async allTodosHandler($, params) {
     const scope = $;
     const telegramId = $.message.chat.id;
-    const userName = $.message.chat.firstName ? $.message.chat.firstName : $.message.chat.lastName;
+    const userName = $.message.chat.firstName || $.message.chat.lastName;
     const allTodos = await findTodo({ telegramId, done: false });
 
     if (!allTodos.length) {
@@ -97,13 +97,13 @@ class TodoController extends TelegramBaseController {
 
       $.waitForRequest.then(async $ => {
         if ($.message.text === `Yes`) {
-            $.sendMessage(`Okay`, {
-              reply_markup: JSON.stringify({
-                remove_keyboard: true
-              })
-            });
-            
-            await this.newTodoHandler($);
+          $.sendMessage(`Okay`, {
+            reply_markup: JSON.stringify({
+              remove_keyboard: true
+            })
+          });
+
+          await this.newTodoHandler($);
         } else if ($.message.text === `No`) {
           $.sendMessage(`Okay`, {
             reply_markup: JSON.stringify({
@@ -136,7 +136,7 @@ class TodoController extends TelegramBaseController {
             text: `You've completed task ${taskNumber}, Congratulations! 👏`
           });
 
-          await this.allTodosHandler(scope, {deletePrevMsg: true});
+          await this.allTodosHandler(scope, { deletePrevMsg: true });
         }
       });
     }
@@ -147,12 +147,12 @@ class TodoController extends TelegramBaseController {
     //   $.editMessageText(chat_id, message_id);
     // } else {
 
-      $.runInlineMenu({
-        layout: 4, //some layouting here
-        method: "sendMessage", //here you must pass the method name
-        params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
-        menu: buttons
-      });
+    $.runInlineMenu({
+      layout: 4, //some layouting here
+      method: "sendMessage", //here you must pass the method name
+      params: [todos, { parse_mode: "Markdown" }], //here you must pass the parameters for that method
+      menu: buttons
+    });
     // }
 
     sendToAdmin(`${userName} just got all todo`);
@@ -167,7 +167,7 @@ class TodoController extends TelegramBaseController {
     const scope = $;
     const buttons = [];
     const telegramId = $.message.chat.id;
-    const userName = $.message.chat.firstName ? $.message.chat.firstName : $.message.chat.lastName;
+    const userName = $.message.chat.firstName || $.message.chat.lastName;
     const doneTodos = await findTodo({ telegramId, done: true });
 
     if (!doneTodos.length) {
@@ -231,7 +231,7 @@ class TodoController extends TelegramBaseController {
   async editTodosHandler($) {
     const message = $.message.text;
     const telegramId = $.message.chat.id;
-    const userName = $.message.chat.firstName ? $.message.chat.firstName : $.message.chat.lastName;
+    const userName = $.message.chat.firstName || $.message.chat.lastName;
     let taskNumber = message.match(/\/edittodo([0-9]+)/)[1];
     taskNumber = Number(taskNumber);
 
@@ -287,7 +287,9 @@ class TodoController extends TelegramBaseController {
     if (!todos.length) {
       customText = `Sorry, I could't copy that task ${emojis.sad}`;
     } else {
-      customText = `${emojis.smile}I copied that for you! Now you can paste it anywhere.`;
+      customText = `${
+        emojis.smile
+      }I copied that for you! Now you can paste it anywhere.`;
       clipboardy.writeSync(todos[0].task);
     }
 
