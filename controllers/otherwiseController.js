@@ -6,7 +6,6 @@ const { sendToAdmin } = require("../modules");
 class OtherwiseController extends TelegramBaseController {
   handle($) {
     const msg = $.message.text;
-    // const telegramId = $.message.chat.id;
     const userName = $.message.chat.firstName || $.message.chat.lastName;
 
     $.sendMessage(
