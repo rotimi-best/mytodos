@@ -342,31 +342,6 @@ class TodoController extends TelegramBaseController {
     $.sendMessage(`${$.message.text} is still under production`);
   }
 
-  /**
-   * @param {Scope} $
-   */
-  feedbackHandler($) {
-    const user = $.message.chat.firstName || $.message.chat.lastName;
-
-    $.sendMessage(
-      `Tell me how you want me to serve you better. ${emojis.smile}`,
-      { parse_mode: "Markdown" }
-    );
-
-    $.waitForRequest.then($ => {
-      const val = $.message.text;
-      if (val) {
-        sendToAdmin(`Feedback from ${user}\n\n ${val}`);
-        $.sendMessage(`Thanks for your feedback, it is really appreciated`);
-        $.sendSticker(stickers.thanksStickerLionKing);
-      } else {
-        $.sendMessage(
-          "Sorry you didnt send a text. Use /feedback to try again"
-        );
-      }
-    });
-  }
-
   get routes() {
     return {
       newTodoCommand: "newTodoHandler",
@@ -375,7 +350,6 @@ class TodoController extends TelegramBaseController {
       copyTodosCommand: "copyTodosHandler",
       doneTodosCommand: "doneTodosHandler",
       categoriesCommand: "categoriesHandler",
-      feedbackCommand: "feedbackHandler",
       splitAndSaveTodoCommand: "splitAndSaveTodoHandler"
     };
   }

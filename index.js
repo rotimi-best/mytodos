@@ -4,6 +4,7 @@ const bot = require("./helpers/botConnection").get();
 require("dotenv").config();
 
 const Todo = require("./controllers/Todo");
+const SupportController = require("./controllers/SupportController");
 const Reminder = require("./controllers/ReminderController");
 const DatePicker = require("./controllers/DatePicker");
 const Start = require("./controllers/Start");
@@ -21,7 +22,11 @@ bot.router
   .when(new TextCommand("/mytodos", "allTodosCommand"), new Todo())
   .when(new TextCommand("/donetodos", "doneTodosCommand"), new Todo())
   .when(new TextCommand("/categories", "categoriesCommand"), new Todo())
-  .when(new TextCommand("/feedback", "feedbackCommand"), new Todo())
+  .when(
+    new TextCommand("/feedback", "feedbackCommand"),
+    new SupportController()
+  )
+  .when(new TextCommand("/help", "helpCommand"), new SupportController())
   .when(
     new TextCommand("/endtask", "datePickerCommand"),
     new DatePicker("Finish", "Task deadline is")
