@@ -3,6 +3,8 @@ const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
 require("dotenv").config();
 
+const sleep = sec => new Promise(res => setTimeout(res, sec * 1000));
+
 /**
  * Get the length of a String or Array
  * @param {Any} x Value to get the length of
@@ -14,7 +16,8 @@ const len = x => x.length;
  * @param {Number} min The minimum number for the random number
  * @param {Number} max The maximum number for the random number
  */
-const genRandNum = (min, max) => Math.floor(Math.random() * (1 + max - min)) + min;
+const genRandNum = (min, max) =>
+  Math.floor(Math.random() * (1 + max - min)) + min;
 
 /**
  * @param {Object} params This should be an Object with fields you need in order to manipulate the date.
@@ -177,8 +180,9 @@ const capitalize = str => str[0].toUpperCase() + str.substring(1);
 
 module.exports = {
   len,
-  date,
   time,
+  date,
+  sleep,
   emojis,
   reduceDay,
   increaseDay,
