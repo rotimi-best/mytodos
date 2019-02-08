@@ -1,6 +1,7 @@
+const cron = require("node-cron");
 const { TextCommand, RegexpCommand } = require("telegram-node-bot");
 const bot = require("./helpers/botConnection").get();
-require('dotenv').config();
+require("dotenv").config();
 
 const Todo = require("./controllers/Todo");
 const DatePicker = require("./controllers/DatePicker");
@@ -11,7 +12,7 @@ const OtherwiseController = require("./controllers/otherwiseController");
 
 bot.router.callbackQuery(new CallbackQuery());
 
-bot.router.inlineQuery(new InlineMode())
+bot.router.inlineQuery(new InlineMode());
 
 bot.router
   .when(new TextCommand("/start", "startCommand"), new Start())
@@ -26,7 +27,7 @@ bot.router
   .when(new RegexpCommand(/\/copytodo/, "copyTodosCommand"), new Todo())
   .otherwise(new OtherwiseController());
 
-process.on('uncaughtException', async (error) => {
+process.on("uncaughtException", async error => {
   const errorMsg = `Best an error occured, please look at it: ${error}`;
 
   console.error(errorMsg);
@@ -34,4 +35,8 @@ process.on('uncaughtException', async (error) => {
   bot.onMaster(() => {
     bot.sendMessage(process.env.ADMIN, errorMsg);
   });
+});
+
+cron.schedule("* * * * *", () => {
+  console.log("running a task every minute");
 });
