@@ -176,6 +176,11 @@ const emojis = {
   delete: "🗑"
 };
 
+const stickers = {
+  waitingSticker: "CAADAgADPQgAAnlc4gkSO7rndkwKigI",
+  thanksStickerLionKing: "CAADAgADqQIAAs-71A5iOMlYXuwndQI"
+};
+
 const capitalize = str => str[0].toUpperCase() + str.substring(1);
 
 module.exports = {
@@ -184,6 +189,7 @@ module.exports = {
   date,
   sleep,
   emojis,
+  stickers,
   reduceDay,
   increaseDay,
   sendToAdmin,

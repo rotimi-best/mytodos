@@ -1,6 +1,12 @@
 const { TelegramBaseController } = require("telegram-node-bot");
 const clipboardy = require("clipboardy");
-const { date, emojis, sendToAdmin, capitalize } = require("../modules");
+const {
+  date,
+  emojis,
+  sendToAdmin,
+  capitalize,
+  stickers
+} = require("../modules");
 const { findTodo, addTodo, updateTodo, deleteTodo } = require("../Db/todos");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
@@ -328,6 +334,39 @@ class TodoController extends TelegramBaseController {
     });
   }
 
+  /**
+   * Get categories
+   * @param {Scope} $
+   */
+  categoriesHandler($) {
+    $.sendMessage(`${$.message.text} is still under production`);
+  }
+
+  /**
+   * @param {Scope} $
+   */
+  feedbackHandler($) {
+    const user = $.message.chat.firstName || $.message.chat.lastName;
+
+    $.sendMessage(
+      `Tell me how you want me to serve you better. ${emojis.smile}`,
+      { parse_mode: "Markdown" }
+    );
+
+    $.waitForRequest.then($ => {
+      const val = $.message.text;
+      if (val) {
+        sendToAdmin(`Feedback from ${user}\n\n ${val}`);
+        $.sendMessage(`Thanks for your feedback, it is really appreciated`);
+        $.sendSticker(stickers.thanksStickerLionKing);
+      } else {
+        $.sendMessage(
+          "Sorry you didnt send a text. Use /feedback to try again"
+        );
+      }
+    });
+  }
+
   get routes() {
     return {
       newTodoCommand: "newTodoHandler",
@@ -335,6 +374,8 @@ class TodoController extends TelegramBaseController {
       editTodosCommand: "editTodosHandler",
       copyTodosCommand: "copyTodosHandler",
       doneTodosCommand: "doneTodosHandler",
+      categoriesCommand: "categoriesHandler",
+      feedbackCommand: "feedbackHandler",
       splitAndSaveTodoCommand: "splitAndSaveTodoHandler"
     };
   }

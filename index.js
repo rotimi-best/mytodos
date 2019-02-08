@@ -20,6 +20,8 @@ bot.router
   .when(new TextCommand("/newtodo", "newTodoCommand"), new Todo())
   .when(new TextCommand("/mytodos", "allTodosCommand"), new Todo())
   .when(new TextCommand("/donetodos", "doneTodosCommand"), new Todo())
+  .when(new TextCommand("/categories", "categoriesCommand"), new Todo())
+  .when(new TextCommand("/feedback", "feedbackCommand"), new Todo())
   .when(
     new TextCommand("/endtask", "datePickerCommand"),
     new DatePicker("Finish", "Task deadline is")
