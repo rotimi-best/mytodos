@@ -125,7 +125,7 @@ class TodoController extends TelegramBaseController {
       const editCommand = `/edittodo` + `${taskNumber}`;
       const copyCommand = `/copytodo` + `${taskNumber}`;
 
-      todos += `📌 ${i}\n${task}\n${editCommand} \t ${copyCommand}\n\n`;
+      todos += `📌 ${i}\n${task}\n${editCommand}\n\n`;
 
       buttons.push({
         text: `${i} ✅`,

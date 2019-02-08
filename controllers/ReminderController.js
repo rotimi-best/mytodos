@@ -11,7 +11,7 @@ const remindUsers = async () => {
   for (let user of users) {
     const { name, telegramId } = user;
 
-    const todos = await findTodo({ telegramId, done: false });
+    let todos = await findTodo({ telegramId, done: false });
 
     if (len(todos)) {
       const incomplete = len(todos);
@@ -32,7 +32,15 @@ const remindUsers = async () => {
 
       await sleep(0.5);
     } else {
-      console.log("This user doesnt have any incompleted todos");
+      const botMessage = `Hello ${name}, I see you have completed all your tasks, don't forget I can help you manage your tasks on telegram.\n\nYou can add to your todos from anywhere on telegram by just typing @my_todos_bot YOUR_TODO_HERE`;
+
+      try {
+        // bot.api.sendMessage(telegramId, botMessage);
+        console.log(botMessage);
+      } catch (error) {
+        console.log(error);
+        sendToAdmin(`We can't send reminder to ${name}.\n\n${error}`);
+      }
     }
   }
 
