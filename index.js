@@ -45,7 +45,7 @@ process.on("uncaughtException", async error => {
   });
 });
 
-cron.schedule("* * * * *", () => {
+cron.schedule("30 6 * * *", () => {
   bot.onMaster(() => {
     console.log("running a task every minute");
 
