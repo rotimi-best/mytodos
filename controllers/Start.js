@@ -4,9 +4,10 @@ const { addUser, findUser } = require("../Db/user");
 const TodoController = require("./Todo");
 const todos = new TodoController();
 const {
-  sendToAdmin, emojis: { wave, thumbsUp, thumbsDown, ok }
+  sendToAdmin,
+  emojis: { wave, thumbsUp, thumbsDown, ok }
 } = require("../modules");
-const { COMMANDS } = require('../helpers/constants');
+const { COMMANDS } = require("../helpers/constants");
 const Bot = require("../helpers/botConnection");
 const bot = Bot.get();
 
@@ -23,9 +24,7 @@ class StartController extends TelegramBaseController {
   async startHandler($) {
     const scope = $;
     const telegramId = $.message.chat.id;
-    let userName = $.message.chat.firstName
-      ? $.message.chat.firstName
-      : $.message.chat.lastName;
+    let userName = $.message.chat.firstName || $.message.chat.lastName;
     const user = await findUser({ telegramId: telegramId });
 
     if (user.length) {
@@ -88,14 +87,11 @@ class StartController extends TelegramBaseController {
       if ($.message.text === `Yes ${thumbsUp}`) {
         sendToAdmin(`User choose Yes ${userName}`);
 
-        $.sendMessage(
-          `Okay, Thanks ${userName} ${ok}.${COMMANDS}`,
-          {
-            reply_markup: JSON.stringify({
-              remove_keyboard: true
-            })
-          }
-        );
+        $.sendMessage(`Okay, Thanks ${userName} ${ok}.${COMMANDS}`, {
+          reply_markup: JSON.stringify({
+            remove_keyboard: true
+          })
+        });
         await this.saveNewUser(userName, telegramId);
       } else if ($.message.text === `No ${thumbsDown}`) {
         $.sendMessage(`What should I then call you?`);
@@ -105,14 +101,11 @@ class StartController extends TelegramBaseController {
 
           sendToAdmin(`User choose No ${userName}`);
 
-          $.sendMessage(
-            `Okay, Thanks ${userName} ${ok}.${COMMANDS}`,
-            {
-              reply_markup: JSON.stringify({
-                remove_keyboard: true
-              })
-            }
-          );
+          $.sendMessage(`Okay, Thanks ${userName} ${ok}.${COMMANDS}`, {
+            reply_markup: JSON.stringify({
+              remove_keyboard: true
+            })
+          });
 
           await this.saveNewUser(userName, telegramId);
         });

@@ -4,6 +4,7 @@ const bot = require("./helpers/botConnection").get();
 require("dotenv").config();
 
 const Todo = require("./controllers/Todo");
+const Reminder = require("./controllers/ReminderController");
 const DatePicker = require("./controllers/DatePicker");
 const Start = require("./controllers/Start");
 const CallbackQuery = require("./callbackQueries");
@@ -33,10 +34,14 @@ process.on("uncaughtException", async error => {
   console.error(errorMsg);
 
   bot.onMaster(() => {
-    bot.sendMessage(process.env.ADMIN, errorMsg);
+    bot.api.sendMessage(process.env.ADMIN, errorMsg);
   });
 });
 
 cron.schedule("* * * * *", () => {
-  console.log("running a task every minute");
+  bot.onMaster(() => {
+    console.log("running a task every minute");
+
+    Reminder.remindUsers();
+  });
 });
