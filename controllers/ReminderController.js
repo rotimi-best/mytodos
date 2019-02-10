@@ -26,7 +26,7 @@ const remindUsers = async () => {
         bot.api.sendMessage(telegramId, reminderMessage);
         // console.log(reminderMessage);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         sendToAdmin(`We can't send reminder to ${name}.\n\n${error}`);
       }
     } else {

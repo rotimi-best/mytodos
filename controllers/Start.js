@@ -118,7 +118,7 @@ class StartController extends TelegramBaseController {
    * @param {Number} telegramId Telegram ID of user
    */
   async saveNewUser(userName, telegramId) {
-    console.log("A new user was added");
+    // console.log("A new user was added");
 
     await addUser({
       name: userName,
