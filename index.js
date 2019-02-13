@@ -1,4 +1,4 @@
-const cron = require("node-cron");
+// const cron = require("node-cron");
 const { TextCommand, RegexpCommand } = require("telegram-node-bot");
 const bot = require("./helpers/botConnection").get();
 require("dotenv").config();
@@ -45,10 +45,10 @@ process.on("uncaughtException", async error => {
   });
 });
 
-cron.schedule("30 6 * * *", () => {
-  bot.onMaster(() => {
-    console.log("running a task every minute");
+// cron.schedule("30 6 * * *", () => {
+//   bot.onMaster(() => {
+//     console.log("running a task every minute");
 
-    Reminder.remindUsers();
-  });
-});
+//     Reminder.remindUsers();
+//   });
+// });
