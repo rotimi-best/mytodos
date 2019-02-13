@@ -155,6 +155,16 @@ const sendToAdmin = msg => {
   });
 };
 
+/**
+ * Send message to admin
+ * @param {String} msg Message to send to admin
+ */
+const sendToUser = (id, message) => {
+  bot.api.sendMessage(id, message, {
+    parse_mode: "Markdown"
+  });
+};
+
 const emojis = {
   smile: "🙂",
   sad: "😞",
@@ -193,6 +203,7 @@ module.exports = {
   reduceDay,
   increaseDay,
   sendToAdmin,
+  sendToUser,
   capitalize,
   genRandNum
 };
